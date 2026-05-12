@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -170,3 +171,177 @@
 
 </body>
 </html>
+=======
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ember Burgers</title>
+    <link rel="stylesheet" href="style.css"> 
+    <link rel="icon" href="images/icono.png" type="image/png">
+    <script src="script.js" defer></script>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+    <script defer src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI" crossorigin="anonymous"></script>
+</head>
+<body>  
+
+    
+    <header>
+        <div class="header-container">
+
+            <div class="logo">
+                <img src="images/logo.png" class="logoimg" alt="EmberBurgers">
+
+                <nav class="navbar">
+                    <ul>
+                       <li><a href="#inicio">Inicio</a></li>
+                       <li><a href="#productos">Productos</a></li>
+                       <li><a href="#nosotros">Nosotros</a></li>
+                       <li><a href="#aplicacion">Aplicación</a></li>
+                       <li><a href="#contacto">Contacto</a></li>
+                    </ul>
+                </nav>    
+                
+            </div>
+
+        <section class="inicio-content" id="inicio">
+            <div class="header-txt">
+                <h1>The Classic Smash</h1>
+                    <p>La clásica de siempre. Nuestra hamburguesa estrella combina carne jugosa,
+                    ingredientes frescos y una salsa secreta que marca la diferencia.</p>
+                <a href="#"
+                    class="btn-1"
+                    data-nombre="El Más Vendido"
+                    data-precio="8999"
+                    data-imagen="images/ClassicSmash.png"
+                    onclick="agregarAlCarrito(this); return false;">
+                    Agregar al carrito
+                </a>
+            </div>
+           <div class="header-img">
+                <img src="images/ClassicSmash.png" alt="imagen-principal">
+           </div>
+        </section>
+    </header>
+
+    
+
+    <section class="valores">
+        <div class="carrusel">
+
+            <div class="slide active">
+                <h2>CALIDAD</h2>
+                <div class="linea"></div>
+                <p>Nos permite ofrecer <span class="destacado">los mejores productos existentes en el mercado</span>, que definen junto al control de procesos, brindar a los comensales un producto cuidado y dedicado.</p>
+            </div>
+
+            <div class="slide">
+                <h2>PASION</h2>
+                <div class="linea"></div>
+                <p>Cada hamburguesa es elaborada con <span class="destacado">dedicación y amor por la cocina</span>, porque creemos que el sabor real nace del fuego y del compromiso.</p>
+            </div>
+
+            <div class="slide">
+                <h2>IDENTIDAD</h2>
+                <div class="linea"></div>
+                <p>Somos más que una hamburguesería. Somos una <span class="destacado">experiencia única hecha al fuego</span>, con personalidad propia y sabor que no se olvida.</p>
+            </div>
+
+            <div class="dots">
+            <span class="dot active" onclick="irASlide(0)"></span>
+            <span class="dot" onclick="irASlide(1)"></span>
+            <span class="dot" onclick="irASlide(2)"></span>
+
+        </div>
+        </div>
+    </section>
+    
+    <section class="nosotros-txt">
+        <div class="nosotrosfondo" style="background-image: url(images/fondonosotros.jpeg);">
+            <img class="fondologo" src="images/logo.png" alt="logo-Nosotros">
+        </div>
+        <div class="info-nosotros-txt">
+            <div class="carruselinfo active">
+                <h2>QUIENES SOMOS</h2>
+                <div class="linea"></div>
+                <p>Somos una empresa que abrio su primer local a fines del 2014 en el iconico Barrio Jardin. <span> Al dia de hoy contamos con 12 locales en Cordoba Capital.</span></p>
+            </div>
+
+            <div class="carruselinfo">
+                <h2>QUIENES SOMOS</h2>
+                <div class="linea"></div>
+                <p>Nuestro diferencial se logra por medio de principalmente dos pilares: <span>La creatividad y la calidad</span>. Esto hace que podamos renovarnos constantemente, llevando a nuestros clientes nuevas experiencias y sabores a través de productos cuidadosamente seleccionados.</p>
+            </div>
+            <div class="dots-nosotros">
+        <span class="dot-nosotros active" onclick="irASlideNosotros(0)"></span>
+        <span class="dot-nosotros" onclick="irASlideNosotros(1)"></span>
+    </div>
+        </div>
+    </section>
+
+
+    <div class="cart-icon">
+                    <label class="cart-icon-btn" for="cart-toggle" title="Ver carrito">🛒</label>
+                    <div class="cart-badge" style="display:none;">0</div>
+                </div>
+
+         <div class="carrito-panel" id="carrito-panel">
+            <div class="carrito-header">
+                <h3>Tu Carrito</h3>
+                <div class="carrito-header-acciones">
+                    <button class="btn-vaciar-header" id="vaciar-carrito">Vaciar carrito</button>
+                    <button class="cerrar-carrito" id="cerrar-carrito">✕</button>
+                </div>
+            </div>
+            <table id="lista-carrito">
+                <thead>
+                    <tr>
+                       <th>Imagen</th>
+                       <th>Nombre</th>
+                       <th>Cant.</th>-
+                       <th>Precio</th>
+                       <th></th>
+                    </tr>
+                </thead>
+                <tbody id="carrito-body"></tbody>
+            </table>
+           <div class="carrito-total">
+            <p>Total: <span id="total">$0</span></p>
+            <button class="btn-1 btn-confirmar" id="btn-confirmar-compra">Confirmar compra</button>
+            </div>
+           </div>
+    
+   <footer>
+    <div class="footer-content container">
+        <div class="Contacto" id="contacto">
+            <h2>Contacto</h2>
+            <ul>
+                <li><strong>Direccion:</strong> Belgrano 438, Córdoba Argentina</li>
+                <li><strong>Telefono:</strong> +54 9 3513534798</li>
+                <li><strong>Email:</strong> info@emberburgers.com</li>
+            </ul>
+        </div>
+        <div class="Secciones">
+            <h2>Secciones</h2>
+            <ul>
+                <li><a href="#inicio">Inicio</a></li>
+                <li><a href="#productos">Productos</a></li>
+                <li><a href="#nosotros">Nosotros</a></li>
+                <li><a href="#aplicacion">Aplicación</a></li>
+                <li><a href="#contacto">Contacto</a></li>
+            </ul>
+        </div>
+        <div class="Redes">
+            <h2>Redes Sociales</h2>
+            <ul>
+                <li><a href="https://www.facebook.com/EmberBurgers" target="_blank"><img src="images/fc.jpg" alt="facebook" class="social-icon"></a></li>
+                <li><a href="https://www.instagram.com/EmberBurgers" target="_blank"><img src="images/ig.jpg" alt="instagram" class="social-icon"></a></li>
+                <li><a href="https://www.tiktok.com/@EmberBurgers" target="_blank"><img src="images/tiktok.avif" alt="tiktok" class="social-icon"></a></li>
+            </ul>
+        </div>
+   </footer>
+
+</body>
+</html>
+>>>>>>> 6e2aec6133f2b2f626589710829e093d0f445070
