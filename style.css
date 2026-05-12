@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 @import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Poppins:wght@400;600&display=swap');
 
 * {
@@ -506,7 +505,6 @@ header {
     font-size: 20px;
     border-radius: 20px;
     font-weight: 600px;
-=======
 @import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Poppins:wght@400;600&display=swap');
 
 * {
@@ -1014,5 +1012,4 @@ header {
     font-size: 20px;
     border-radius: 20px;
     font-weight: 600px;
->>>>>>> 6e2aec6133f2b2f626589710829e093d0f445070
 }
