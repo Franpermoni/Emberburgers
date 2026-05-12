@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 // ── CARRUSEL ──
 let slideActual = 0;
 const slides = document.querySelectorAll('.slide');
@@ -124,7 +123,6 @@ function irASlideNosotros(n) {
 setInterval(() => {
     const siguiente = (slideNosotrosActual + 1) % slidesNosotros.length;
     irASlideNosotros(siguiente);
-=======
 // ── CARRUSEL ──
 let slideActual = 0;
 const slides = document.querySelectorAll('.slide');
@@ -250,5 +248,4 @@ function irASlideNosotros(n) {
 setInterval(() => {
     const siguiente = (slideNosotrosActual + 1) % slidesNosotros.length;
     irASlideNosotros(siguiente);
->>>>>>> 6e2aec6133f2b2f626589710829e093d0f445070
 }, 4000);
