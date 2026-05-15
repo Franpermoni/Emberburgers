@@ -629,6 +629,9 @@ header {
   filter: brightness(0) invert(1);
   
 }
+.menu-cerrar {
+  display: none;
+}
 
 /* ──── RESPONSIVE DESIGN ──── */
 
@@ -697,6 +700,279 @@ header {
     padding: 15px;
   }
 }
+
+/* ── SECCIONES OCULTAS POR DEFECTO ─────────────────────────── */
+.seccion-pagina {
+  display: none;
+  background-color: #0D0D0D;
+  min-height: 100vh;
+  padding: 60px 80px;
+  animation: fadeIn 0.4s ease;
+}
+ 
+/* ── PRODUCTOS ──────────────────────────────────────────────── */
+.productos-header {
+  text-align: center;
+  margin-bottom: 50px;
+}
+ 
+.productos-header h1 {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 52px;
+  color: #F5F5F5;
+  letter-spacing: 3px;
+}
+ 
+.productos-header p {
+  font-family: 'Poppins', sans-serif;
+  font-size: 14px;
+  color: #aaaaaa;
+  margin-top: 10px;
+}
+ 
+.productos-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 28px;
+  max-width: 1100px;
+  margin: 0 auto;
+}
+ 
+.producto-card {
+  background-color: #1A1A1A;
+  border-radius: 16px;
+  overflow: hidden;
+  border: 1px solid #2a2a2a;
+  transition: transform .2s, border-color .2s;
+  display: flex;
+  flex-direction: column;
+}
+ 
+.producto-card:hover {
+  transform: translateY(-4px);
+  border-color: #E85D04;
+}
+ 
+.producto-img-wrap {
+  width: 100%;
+  height: 200px;
+  overflow: hidden;
+  background-color: #111;
+}
+ 
+.producto-img-wrap img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform .3s;
+}
+ 
+.producto-card:hover .producto-img-wrap img {
+  transform: scale(1.05);
+}
+ 
+.producto-info {
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  flex: 1;
+}
+ 
+.producto-info h2 {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 26px;
+  color: #F5F5F5;
+  letter-spacing: 2px;
+  margin: 0;
+}
+ 
+.producto-desc {
+  font-family: 'Poppins', sans-serif;
+  font-size: 12.5px;
+  color: #aaaaaa;
+  line-height: 1.6;
+  flex: 1;
+}
+ 
+.producto-footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: 8px;
+}
+ 
+.producto-precio {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 24px;
+  color: #E85D04;
+  letter-spacing: 1px;
+}
+ 
+.producto-footer .btn-1 {
+  padding: 8px 20px;
+  font-size: 13px;
+}
+ 
+/* ── CONTACTO ───────────────────────────────────────────────── */
+.contacto-wrap {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 60px;
+  max-width: 1000px;
+  margin: 0 auto;
+}
+ 
+.contacto-form-col h1 {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 48px;
+  color: #F5F5F5;
+  letter-spacing: 3px;
+  margin-bottom: 8px;
+}
+ 
+.contacto-subtitulo {
+  font-family: 'Poppins', sans-serif;
+  font-size: 13px;
+  color: #aaaaaa;
+  margin: 16px 0 28px;
+  line-height: 1.6;
+}
+ 
+.form-grupo {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin-bottom: 18px;
+}
+ 
+.form-grupo label {
+  font-family: 'Poppins', sans-serif;
+  font-size: 13px;
+  font-weight: 600;
+  color: #dddddd;
+}
+ 
+.requerido { color: #E85D04; }
+ 
+.form-fila {
+  display: flex;
+  gap: 12px;
+}
+ 
+.form-grupo input,
+.form-grupo textarea {
+  background-color: #1A1A1A;
+  border: 1px solid #333;
+  border-radius: 10px;
+  padding: 12px 14px;
+  color: #F5F5F5;
+  font-family: 'Poppins', sans-serif;
+  font-size: 13px;
+  width: 100%;
+  transition: border-color .2s;
+  outline: none;
+  resize: none;
+}
+ 
+.form-grupo input:focus,
+.form-grupo textarea:focus {
+  border-color: #E85D04;
+}
+ 
+.form-grupo input::placeholder,
+.form-grupo textarea::placeholder {
+  color: #555;
+}
+ 
+.btn-enviar {
+  width: 100%;
+  padding: 14px;
+  font-size: 15px;
+  border: none;
+  cursor: pointer;
+}
+ 
+/* Info local */
+.local-card {
+  background-color: #1A1A1A;
+  border: 1px solid #2a2a2a;
+  border-radius: 16px;
+  padding: 28px;
+  margin-bottom: 20px;
+}
+ 
+.local-card h3 {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 28px;
+  color: #E85D04;
+  letter-spacing: 2px;
+  margin-bottom: 18px;
+}
+ 
+.local-dato {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+  margin-bottom: 14px;
+  font-family: 'Poppins', sans-serif;
+  font-size: 13px;
+  color: #aaaaaa;
+}
+ 
+.local-label {
+  font-weight: 600;
+  color: #dddddd;
+  font-size: 12px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+ 
+.contacto-extra {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+ 
+.extra-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 14px;
+  background-color: #1A1A1A;
+  border: 1px solid #2a2a2a;
+  border-radius: 12px;
+  padding: 16px 20px;
+  font-family: 'Poppins', sans-serif;
+}
+ 
+.extra-icon {
+  font-size: 22px;
+  flex-shrink: 0;
+}
+ 
+.extra-item strong {
+  font-size: 13px;
+  color: #dddddd;
+  display: block;
+  margin-bottom: 4px;
+}
+ 
+.extra-item p {
+  font-size: 12.5px;
+  color: #aaaaaa;
+  margin: 0;
+}
+ 
+.menu-toggle {
+  display: none;
+  background: none;
+  border: none;
+  color: #F5F5F5;
+  font-size: 26px;
+  cursor: pointer;
+  padding: 4px 8px;
+}
+
 
 /* Mobile (hasta 768px) */
 @media (max-width: 768px) {
@@ -784,8 +1060,8 @@ header {
   }
 
   .cart-icon {
-    top: 15px;
-    right: 15px;
+    top: 30px;
+    right: 18px;
     font-size: 40px;
   }
 
@@ -890,8 +1166,18 @@ header {
 
 /* Mobile pequeño (hasta 480px) */
 @media (max-width: 480px) {
+  .logo {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    position: relative;
+    padding: 15px 20px;
+  }
+
   .logo img {
-    width: 160px;
+    width: 200px;
   }
 
   .navbar ul li a {
@@ -900,6 +1186,7 @@ header {
   }
 
   .header-txt h1 {
+    padding-top: 30px;
     font-size: 28px;
   }
 
@@ -914,10 +1201,18 @@ header {
   .btn-1 {
     padding: 10px 20px;
     font-size: 12px;
+    justify-content: center;
+    width: auto;
+    align-self: center; 
   }
 
   .inicio-content {
-    padding: 20px 15px;
+    flex-direction: column;
+    padding: 30px 20px;
+    min-height: auto;
+    gap: 30px;
+    align-items: center;
+    text-align: center;
   }
 
   .valores {
@@ -961,5 +1256,124 @@ header {
   .copy-img {
     height: 80px;
   }
+
+  .menu-toggle {
+    display: block;
+    position: fixed;
+    left: 18px;
+    top: 28px;
+    z-index: 999;
+    font-size: 20px;
+    background: none;
+    border: none;
+    color: #F5F5F5;
+    cursor: pointer;
+  }
+
+  .navbar {
+    display: block;
+    position: fixed;
+    top: 0;
+    left: -100%;
+    width: 55%;
+    height: 100vh;
+    background-color: #1A1A1A;
+    border-right: 1px solid #E85D04;
+    z-index: 1001;
+    transition: left 0.3s ease;
+    padding: 60px 30px 30px;
+  }
+
+  .navbar.abierto {
+    left: 0;
+  }
+
+  .navbar ul {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 16px;
+    padding: 0;
+    background: none;
+    border: none;
+  }
+
+  .navbar ul li a {
+    font-size: 16px;
+  }
 }
+.navbar {
+    width: 65%;  /* un poco menos ancho */
+  }
+
+  .menu-cerrar {
+    display: block;
+    background: none;
+    border: none;
+    color: #F5F5F5;
+    font-size: 22px;
+    cursor: pointer;
+    margin-bottom: 30px;
+    align-self: flex-end;
+  }
+
+  .menu-cerrar:hover {
+    color: #E85D04;
+  }
+
+  .menu-overlay {
+    display: none;
+    position: fixed;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    background: rgba(0,0,0,0.5);
+    z-index: 1000;
+  }
+
+  .menu-overlay.activo {
+    display: block;
+  }
+   /* ── PRODUCTOS ── */
+  .seccion-pagina {
+    padding: 30px 20px;
+  }
+
+  .producto-card {
+    max-width: 320px;
+    margin: 0 auto;
+  }
+
+  .productos-grid {
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+
+  .productos-header h1 {
+    font-size: 36px;
+  }
+
+  .producto-img-wrap {
+    height: 220px;
+  }
+
+  /* ── CONTACTO ── */
+  .contacto-wrap {
+    grid-template-columns: 1fr;
+    gap: 30px;
+  }
+
+  .contacto-form-col h1 {
+    font-size: 36px;
+  }
+
+  .local-card {
+    padding: 20px;
+  }
+
+  .extra-item {
+    padding: 14px 16px;
+  }
+
+
+
+
 
