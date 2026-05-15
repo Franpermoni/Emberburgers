@@ -29,10 +29,7 @@ function irASlideNosotros(n) {
     dotsNosotros[slideNosotrosActual].classList.add('active');
 }
 
-setInterval(() => {
-    const siguiente = (slideNosotrosActual + 1) % slidesNosotros.length;
-    irASlideNosotros(siguiente);
-}, 4000);
+
 
 // ── CARRITO ──
 const carritoPanel = document.getElementById('carrito-panel');
@@ -79,16 +76,18 @@ function actualizarCarrito() {
         cantidadTotal += item.cantidad;
         tbody.innerHTML += `
             <tr>
-                <td><img src="${item.imagen}" width="50"></td>
-                <td>${item.nombre}</td>
-                <td>
-                    <button onclick="cambiarCantidad(${index}, -1)">−</button>
-                    ${item.cantidad}
-                    <button onclick="cambiarCantidad(${index}, 1)">+</button>
-                </td>
-                <td>$${(item.precio * item.cantidad).toLocaleString()}</td>
-                <td><button onclick="eliminarItem(${index})">🗑️</button></td>
-            </tr>
+  <td><img src="${item.imagen}" width="50"></td>
+  <td>${item.nombre}</td>
+  <td>
+    <div style="display:flex; align-items:center; gap:6px;">
+      <button onclick="cambiarCantidad(${index}, -1)">−</button>
+      <span style="min-width:20px; text-align:center; display:inline-block;">${item.cantidad}</span>
+      <button onclick="cambiarCantidad(${index}, 1)">+</button>
+    </div>
+  </td>
+  <td>$${(item.precio * item.cantidad).toLocaleString()}</td>
+  <td><button onclick="eliminarItem(${index})">🗑️</button></td>
+</tr>
         `;
     });
 

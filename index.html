@@ -12,46 +12,55 @@
 </head>
 <body>  
 
-    
-    <header>
-        <div class="header-container">
+  <header>
+    <div class="header-container" id="inicio">
 
-            <div class="logo">
-                <img src="images/logo.png" class="logoimg" alt="EmberBurgers">
+      <div class="logo">
+        <img src="images/logo.png" class="logoimg" alt="EmberBurgers">
 
-                <nav class="navbar">
-                    <ul>
-                       <li><a href="#inicio">Inicio</a></li>
-                       <li><a href="#productos">Productos</a></li>
-                       <li><a href="#nosotros">Nosotros</a></li>
-                       <li><a href="#aplicacion">Aplicación</a></li>
-                       <li><a href="#contacto">Contacto</a></li>
-                    </ul>
-                </nav>    
-            </div>
+        <nav class="navbar">
+          <ul>
+            <li><a href="#inicio">Inicio</a></li>
+            <li><a href="#productos">Productos</a></li>
+            <li><a href="#nosotros">Nosotros</a></li>
+            <li><a href="#contacto">Contacto</a></li>
+          </ul>
+        </nav> 
+      </div>
         
 
-        <section class="inicio-content" id="inicio">
-            <div class="header-txt">
-                <h1>The Classic Smash</h1>
-                    <p>La clásica de siempre. Nuestra hamburguesa estrella combina carne jugosa,
-                    ingredientes frescos y una salsa secreta que marca la diferencia.</p>
-                <a href="#"
-                    class="btn-1"
-                    data-nombre="El Más Vendido"
-                    data-precio="8999"
-                    data-imagen="images/ClassicSmash.png"
-                    onclick="agregarAlCarrito(this); return false;">
-                    Agregar al carrito
-                </a>
-            </div>
-           <div class="header-img">
-                <img src="images/ClassicSmash.png" alt="imagen-principal">
-           </div>
-        </section>
-    </header>
+    <section class="inicio-content">
+      <div class="header-txt">
+        <h1>The Classic Smash</h1>
+            <p>La clásica de siempre. Nuestra hamburguesa estrella combina carne jugosa,
+            ingredientes frescos y una salsa secreta que marca la diferencia.</p>
+        <a href="#"
+          class="btn-1"
+          data-nombre="The Classic Smash"
+          data-precio="8999"
+          data-imagen="images/ClassicSmash.png"
+          onclick="agregarAlCarrito(this); return false;">
+          Agregar al carrito
+        </a>
+      </div>
+      <div class="header-img">
+        <img src="images/ClassicSmash.png" alt="imagen-principal">
+      </div>
+      </section>
+    </div>
+  
+  </header>
 
-    
+  <!-- Producotos -->
+
+
+  <!-- Contacto   -->
+
+
+
+
+
+    <!-- carrusel nuestros valores -->
 
     <section class="valores">
         <div class="carrusel">
@@ -82,12 +91,13 @@
         </div>
         </div>
     </section>
-    
+
+    <!-- CARRUSEL NOSOTROS -->
     <section class="nosotros-txt">
         <div class="nosotrosfondo" style="background-image: url(images/fondonosotros.jpeg);">
             <img class="fondologo" src="images/logo.png" alt="logo-Nosotros">
         </div>
-        <div class="info-nosotros-txt">
+        <div class="info-nosotros-txt" id="nosotros">
             <div class="carruselinfo active">
                 <h2>QUIENES SOMOS</h2>
                 <div class="linea"></div>
@@ -106,37 +116,38 @@
         </div>
     </section>
 
-
+   <!-- CARRITO DE COMPRA   -->
     <div class="cart-icon">
-                    <label class="cart-icon-btn" for="cart-toggle" title="Ver carrito">🛒</label>
-                    <div class="cart-badge" style="display:none;">0</div>
-                </div>
+      <label class="cart-icon-btn" for="cart-toggle" title="Ver carrito">🛒</label>
+      <div class="cart-badge" style="display:none;">0</div>
+    </div>
 
-         <div class="carrito-panel" id="carrito-panel">
-            <div class="carrito-header">
-                <h3>Tu Carrito</h3>
-                <div class="carrito-header-acciones">
-                    <button class="btn-vaciar-header" id="vaciar-carrito">Vaciar carrito</button>
-                    <button class="cerrar-carrito" id="cerrar-carrito">✕</button>
-                </div>
-            </div>
-            <table id="lista-carrito">
-                <thead>
-                    <tr>
-                       <th>Imagen</th>
-                       <th>Nombre</th>
-                       <th>Cant.</th>
-                       <th>Precio</th>
-                       <th></th>
-                    </tr>
-                </thead>
-                <tbody id="carrito-body"></tbody>
-            </table>
-           <div class="carrito-total">
-            <p>Total: <span id="total">$0</span></p>
-            <button class="btn-1 btn-confirmar" id="btn-confirmar-compra">Confirmar compra</button>
-            </div>
-           </div>
+    <div class="carrito-panel" id="carrito-panel">
+      <div class="carrito-header">
+        <h3>Tu Carrito</h3>
+        <div class="carrito-header-acciones">
+          <button class="btn-vaciar-header" id="vaciar-carrito">Vaciar carrito</button>
+          <button class="cerrar-carrito" id="cerrar-carrito">✕</button>
+        </div>
+      </div>
+      <table id="lista-carrito">
+        <thead>
+          <tr>
+            <th>Imagen</th>
+            <th>Nombre</th>
+            <th>Cant.</th>
+            <th>Precio</th>
+            <th></th>
+          </tr>
+        </thead>
+        <tbody id="carrito-body"></tbody>
+      </table>
+
+      <div class="carrito-total">
+        <p>Total: <span id="total">$0</span></p>
+        <button class="btn-1 btn-confirmar" id="btn-confirmar-compra">Confirmar compra</button>
+      </div>
+    </div>
     
    <footer>
   <div class="footer">
