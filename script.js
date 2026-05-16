@@ -112,12 +112,43 @@ vaciarCarritoBtn.addEventListener('click', () => {
     actualizarCarrito();
 });
 
+// Confirmar compra
 document.getElementById('btn-confirmar-compra').addEventListener('click', () => {
     if (carrito.length === 0) {
         alert('Tu carrito está vacío');
         return;
     }
-    alert('¡Compra confirmada! Gracias por tu pedido 🍔');
+
+    // Generar número de orden aleatorio
+    const nroOrden = Math.floor(Math.random() * 9000) + 1000;
+
+    // Armar el mensaje
+    let mensaje = `🍔 *EMBER BURGERS — NUEVO PEDIDO #${nroOrden}*\n`;
+    mensaje += `━━━━━━━━━━━━━━━━━━━━━━\n\n`;
+    mensaje += `📋 *DETALLE DEL PEDIDO:*\n`;
+
+    carrito.forEach(item => {
+        mensaje += `• ${item.nombre} x${item.cantidad} — $${(item.precio * item.cantidad).toLocaleString()}\n`;
+    });
+
+    const total = carrito.reduce((acc, item) => acc + item.precio * item.cantidad, 0);
+    mensaje += `\n━━━━━━━━━━━━━━━━━━━━━━\n`;
+    mensaje += `💰 *TOTAL: $${total.toLocaleString()}*\n`;
+    mensaje += `━━━━━━━━━━━━━━━━━━━━━━\n\n`;
+    mensaje += `💳 *MÉTODO DE PAGO:*\n`;
+    mensaje += `Por favor indicanos cómo vas a abonar:\n`;
+    mensaje += `   • Mercado Pago\n`;
+    mensaje += `   • QR\n`;
+    mensaje += `   • Transferencia bancaria\n\n`;
+    mensaje += `⚠️ *Si elegís transferencia*, por favor enviá el comprobante de pago por este mismo chat para confirmar tu pedido.\n\n`;
+    mensaje += `✅ Tu pedido será confirmado una vez que recibamos el comprobante o la acreditación del pago. ¡Gracias por elegirnos! 🔥`;
+
+    // Abrir WhatsApp
+    const numero = '5493513534795';
+    const url = `https://wa.me/${numero}?text=${encodeURIComponent(mensaje)}`;
+    window.open(url, '_blank');
+
+    // Limpiar carrito
     carrito = [];
     actualizarCarrito();
     carritoPanel.style.display = 'none';
@@ -174,4 +205,32 @@ function cerrarMenu() {
   const overlay = document.getElementById('menu-overlay');
   navbar.classList.remove('abierto');
   overlay.classList.remove('activo');
+}
+
+// Enviar formulario de contacto
+function enviarFormulario() {
+  const nombre   = document.querySelector('.contacto-form-col input[placeholder="Nombre"]').value.trim();
+  const apellido = document.querySelector('.contacto-form-col input[placeholder="Apellido"]').value.trim();
+  const telefono = document.querySelector('.contacto-form-col input[type="tel"]').value.trim();
+  const email    = document.querySelector('.contacto-form-col input[type="email"]').value.trim();
+  const mensaje  = document.querySelector('.contacto-form-col textarea').value.trim();
+
+  if (!nombre || !email || !mensaje) {
+    alert('Por favor completá nombre, email y mensaje.');
+    return;
+  }
+
+  emailjs.send('service_uky7v5h', 'template_8xs47lg', {
+    nombre,
+    apellido,
+    telefono,
+    email,
+    mensaje
+  }).then(() => {
+    alert('✅ Mensaje enviado con éxito. Te respondemos a la brevedad.');
+    document.querySelectorAll('.contacto-form-col input, .contacto-form-col textarea')
+      .forEach(el => el.value = '');
+  }).catch(() => {
+    alert('❌ Hubo un error al enviar. Intentá de nuevo.');
+  });
 }
