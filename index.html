@@ -11,6 +11,7 @@
   <script defer src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI" crossorigin="anonymous"></script>
   <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
   <script>emailjs.init('ttOk34TyN27jX7Ei2');</script>
+  <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
 </head>
 <body>  
 
@@ -89,10 +90,10 @@
 
     <!-- CARRUSEL NOSOTROS -->
     <section class="nosotros-txt">
-        <div class="nosotrosfondo" style="background-image: url(images/fondonosotros.jpeg);">
+        <div class="nosotrosfondo" data-aos="fade-right" style="background-image: url(images/fondonosotros.jpeg);">
             <img class="fondologo" src="images/logo.png" alt="logo-Nosotros">
         </div>
-        <div class="info-nosotros-txt" id="nosotros">
+        <div class="info-nosotros-txt" data-aos="fade-left" id="nosotros">
             <div class="carruselinfo active">
                 <h2>QUIENES SOMOS</h2>
                 <div class="linea"></div>
@@ -147,7 +148,7 @@
 
     <!-- SECCIÓN PRODUCTOS -->
 <section class="seccion-pagina" id="sec-productos">
-  <div class="productos-header">
+  <div class="productos-header" data-aos="fade-down">
     <h1>Nuestros Productos</h1>
     <div class="linea"></div>
     <p>Todas nuestras hamburguesas están hechas con pan Sunset y smash 100% carne.</p>
@@ -155,7 +156,7 @@
  
   <div class="productos-grid">
  
-    <div class="producto-card">
+    <div class="producto-card" data-aos="fade-up" data-aos-delay="0">
       <div class="producto-img-wrap">
         <img src="images/brave.png" alt="Brave">
       </div>
@@ -176,7 +177,7 @@
       </div>
     </div>
  
-    <div class="producto-card">
+    <div class="producto-card" data-aos="fade-up" data-aos-delay="100">
       <div class="producto-img-wrap">
         <img src="images/7thstreet.png" alt="7th Street">
       </div>
@@ -197,7 +198,7 @@
       </div>
     </div>
  
-    <div class="producto-card">
+    <div class="producto-card" data-aos="fade-up" data-aos-delay="200">
       <div class="producto-img-wrap">
         <img src="images/oneburger.png" alt="One Burger">
       </div>
@@ -218,7 +219,7 @@
       </div>
     </div>
  
-    <div class="producto-card">
+    <div class="producto-card" data-aos="fade-up" data-aos-delay="300">
       <div class="producto-img-wrap">
         <img src="images/manhattan.png" alt="Manhattan">
       </div>
@@ -239,7 +240,7 @@
       </div>
     </div>
  
-    <div class="producto-card">
+    <div class="producto-card" data-aos="fade-up" data-aos-delay="400">
       <div class="producto-img-wrap">
         <img src="images/simplesmash.png" alt="Simple Smash">
       </div>
@@ -269,7 +270,7 @@
   <div class="contacto-wrap">
  
     <!-- Formulario izquierda -->
-    <div class="contacto-form-col">
+    <div class="contacto-form-col" data-aos="fade-right">
       <h1>Contacto</h1>
       <div class="linea"></div>
       <p class="contacto-subtitulo">¡Nos encanta saber de vos! Escribinos y te respondemos a la brevedad.</p>
@@ -301,7 +302,7 @@
     </div>
  
     <!-- Info derecha -->
-    <div class="contacto-info-col">
+    <div class="contacto-info-col" data-aos="fade-left">
  
       <div class="local-card">
         <h3>Córdoba</h3>
@@ -401,6 +402,7 @@
   </div>
 </footer>
 
-
+<script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+<script>AOS.init({ duration: 700, once: true });</script>
 </body>
 </html>

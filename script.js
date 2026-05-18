@@ -160,33 +160,44 @@ const SECCIONES_INICIO  = ['inicio-content', 'valores', 'nosotros-txt']; // clas
  
 function mostrarSeccion(cual) {
   if (cual === 'inicio') {
-    // Mostrar inicio, ocultar productos y contacto
     SECCIONES_INICIO.forEach(cls => {
       const el = document.querySelector('.' + cls) || document.getElementById(cls);
       if (el) el.style.display = '';
     });
     SECCIONES_OCULTAS.forEach(id => {
       const el = document.getElementById(id);
-      if (el) el.style.display = 'none';
+      if (el) {
+        el.classList.remove('visible');
+        el.style.display = 'none';
+      }
     });
- 
+
   } else if (cual === 'nosotros') {
-    // Scroll al nosotros en el inicio
     mostrarSeccion('inicio');
     setTimeout(() => {
       const el = document.querySelector('.nosotros-txt');
       if (el) el.scrollIntoView({ behavior: 'smooth' });
     }, 100);
- 
+
   } else {
-    // Ocultar inicio, mostrar la sección pedida
     SECCIONES_INICIO.forEach(cls => {
       const el = document.querySelector('.' + cls) || document.getElementById(cls);
       if (el) el.style.display = 'none';
     });
     SECCIONES_OCULTAS.forEach(id => {
       const el = document.getElementById(id);
-      if (el) el.style.display = id === 'sec-' + cual ? 'block' : 'none';
+      if (el) {
+        if (id === 'sec-' + cual) {
+          el.style.display = 'block';
+          setTimeout(() => {
+            el.classList.add('visible');
+            AOS.refresh();
+          }, 10);
+        } else {
+          el.classList.remove('visible');
+          el.style.display = 'none';
+        }
+      }
     });
     window.scrollTo({ top: 0, behavior: 'smooth' });
   }
