@@ -29,8 +29,6 @@ function irASlideNosotros(n) {
     dotsNosotros[slideNosotrosActual].classList.add('active');
 }
 
-
-
 // ── CARRITO ──
 const carritoPanel = document.getElementById('carrito-panel');
 const cerrarCarrito = document.getElementById('cerrar-carrito');
@@ -112,17 +110,15 @@ vaciarCarritoBtn.addEventListener('click', () => {
     actualizarCarrito();
 });
 
-// Confirmar compra
+// ── CONFIRMAR COMPRA ──
 document.getElementById('btn-confirmar-compra').addEventListener('click', () => {
     if (carrito.length === 0) {
         alert('Tu carrito está vacío');
         return;
     }
 
-    // Generar número de orden aleatorio
     const nroOrden = Math.floor(Math.random() * 9000) + 1000;
 
-    // Armar el mensaje
     let mensaje = `🍔 *EMBER BURGERS — NUEVO PEDIDO #${nroOrden}*\n`;
     mensaje += `━━━━━━━━━━━━━━━━━━━━━━\n\n`;
     mensaje += `📋 *DETALLE DEL PEDIDO:*\n`;
@@ -143,21 +139,19 @@ document.getElementById('btn-confirmar-compra').addEventListener('click', () => 
     mensaje += `⚠️ *Si elegís transferencia*, por favor enviá el comprobante de pago por este mismo chat para confirmar tu pedido.\n\n`;
     mensaje += `✅ Tu pedido será confirmado una vez que recibamos el comprobante o la acreditación del pago. ¡Gracias por elegirnos! 🔥`;
 
-    // Abrir WhatsApp
     const numero = '5493513534795';
     const url = `https://wa.me/${numero}?text=${encodeURIComponent(mensaje)}`;
     window.open(url, '_blank');
 
-    // Limpiar carrito
     carrito = [];
     actualizarCarrito();
     carritoPanel.style.display = 'none';
 });
 
-// Secciones que se ocultan/muestran
+// ── SECCIONES ──
 const SECCIONES_OCULTAS = ['sec-productos', 'sec-contacto'];
-const SECCIONES_INICIO  = ['inicio-content', 'valores', 'nosotros-txt']; // clases de tus secciones del inicio
- 
+const SECCIONES_INICIO  = ['inicio-content', 'valores', 'nosotros-txt'];
+
 function mostrarSeccion(cual) {
   if (cual === 'inicio') {
     SECCIONES_INICIO.forEach(cls => {
@@ -166,10 +160,7 @@ function mostrarSeccion(cual) {
     });
     SECCIONES_OCULTAS.forEach(id => {
       const el = document.getElementById(id);
-      if (el) {
-        el.classList.remove('visible');
-        el.style.display = 'none';
-      }
+      if (el) el.style.display = 'none';
     });
 
   } else if (cual === 'nosotros') {
@@ -189,12 +180,8 @@ function mostrarSeccion(cual) {
       if (el) {
         if (id === 'sec-' + cual) {
           el.style.display = 'block';
-          setTimeout(() => {
-            el.classList.add('visible');
-            AOS.refresh();
-          }, 10);
+          animarSeccion(id);
         } else {
-          el.classList.remove('visible');
           el.style.display = 'none';
         }
       }
@@ -203,7 +190,7 @@ function mostrarSeccion(cual) {
   }
 }
 
-//Responsive menu
+// ── MENU RESPONSIVE ──
 function toggleMenu() {
   const navbar = document.getElementById('navbar');
   const overlay = document.getElementById('menu-overlay');
@@ -218,7 +205,7 @@ function cerrarMenu() {
   overlay.classList.remove('activo');
 }
 
-// Enviar formulario de contacto
+// ── FORMULARIO DE CONTACTO ──
 function enviarFormulario() {
   const nombre   = document.querySelector('.contacto-form-col input[placeholder="Nombre"]').value.trim();
   const apellido = document.querySelector('.contacto-form-col input[placeholder="Apellido"]').value.trim();
@@ -243,5 +230,121 @@ function enviarFormulario() {
       .forEach(el => el.value = '');
   }).catch(() => {
     alert('❌ Hubo un error al enviar. Intentá de nuevo.');
+  });
+}
+
+// ── GSAP ANIMACIONES ──
+gsap.registerPlugin(ScrollTrigger);
+
+const esMobile = window.innerWidth <= 768;
+
+// Forzar visibilidad inicial de elementos críticos
+gsap.set('.info-nosotros-txt, .fondologo, .footer-col, .copy-footer', { clearProps: 'all' });
+
+if (!esMobile) {
+  // Nosotros
+  gsap.from('.fondologo', {
+    scrollTrigger: {
+      trigger: '.nosotros-txt',
+      start: 'top 75%',
+      toggleActions: 'play reverse play reverse'
+    },
+    scale: 0.6, opacity: 0, duration: 1.2,
+    ease: 'elastic.out(1, 0.5)', clearProps: 'all'
+  });
+
+  gsap.from('.info-nosotros-txt', {
+    scrollTrigger: {
+      trigger: '.nosotros-txt',
+      start: 'top 75%',
+      toggleActions: 'play reverse play reverse'
+    },
+    x: 120, opacity: 0, duration: 1,
+    ease: 'power4.out', clearProps: 'all'
+  });
+
+  // Cards productos
+  gsap.utils.toArray('.producto-card').forEach((card, i) => {
+    gsap.from(card, {
+      scrollTrigger: {
+        trigger: card,
+        start: 'top 88%',
+        toggleActions: 'play reverse play reverse'
+      },
+      y: 100, opacity: 0, scale: 0.9,
+      duration: 0.7, delay: i * 0.08,
+      ease: 'back.out(1.4)', clearProps: 'all'
+    });
+  });
+}
+
+// Footer — funciona en mobile y desktop
+gsap.from('.footer-col', {
+  scrollTrigger: {
+    trigger: '.footer',
+    start: 'top 95%',
+    toggleActions: 'play reverse play reverse'
+  },
+  y: 40, opacity: 0, duration: 0.7,
+  stagger: 0.15, ease: 'power3.out', clearProps: 'all'
+});
+
+gsap.from('.copy-footer', {
+  scrollTrigger: {
+    trigger: '.footer',
+    start: 'top 95%',
+    toggleActions: 'play reverse play reverse'
+  },
+  y: 20, opacity: 0, duration: 0.5,
+  delay: 0.4, ease: 'power3.out', clearProps: 'all'
+});
+
+// ── ANIMAR SECCIONES ──
+function animarSeccion(id) {
+  // Resetear footer antes de animar
+  gsap.killTweensOf('.footer-col, .copy-footer');
+  gsap.set('.footer-col', { opacity: 0, y: 40 });
+  gsap.set('.copy-footer', { opacity: 0, y: 20 });
+
+  if (id === 'sec-productos') {
+    gsap.from('.productos-header', {
+      y: -50, opacity: 0, duration: 0.7,
+      ease: 'power3.out', clearProps: 'all'
+    });
+    if (!esMobile) {
+      gsap.from('.producto-card', {
+        y: 80, opacity: 0, scale: 0.9,
+        duration: 0.6, stagger: 0.1,
+        delay: 0.1, ease: 'back.out(1.4)', clearProps: 'all'
+      });
+    }
+  }
+
+  if (id === 'sec-contacto') {
+    gsap.from('.contacto-form-col', {
+      x: esMobile ? 0 : -80, opacity: 0,
+      duration: 0.9, ease: 'power4.out', clearProps: 'all'
+    });
+    gsap.from('.contacto-info-col', {
+      x: esMobile ? 0 : 80, opacity: 0,
+      duration: 0.9, ease: 'power4.out', clearProps: 'all'
+    });
+  }
+
+  // Animar footer con scroll trigger desde la posición actual
+  ScrollTrigger.create({
+    trigger: '.footer',
+    start: 'top 95%',
+    once: false,
+    onEnter: () => {
+      gsap.to('.footer-col', {
+        y: 0, opacity: 1, duration: 0.7,
+        stagger: 0.15, ease: 'power3.out', clearProps: 'all'
+      });
+      gsap.to('.copy-footer', {
+        y: 0, opacity: 1, duration: 0.5,
+        delay: 0.3, ease: 'power3.out', clearProps: 'all'
+      });
+    }
   });
 }

@@ -663,12 +663,7 @@ header {
   background-color: #0D0D0D;
   min-height: 100vh;
   padding: 60px 80px;
-  opacity: 0;
-  transition: opacity 0.4s ease;
-}
-
-.seccion-pagina.visible {
-  opacity: 1;
+  animation: fadeIn 0.4s ease;
 }
 
 /* ── PRODUCTOS ── */
