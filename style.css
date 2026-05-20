@@ -1073,8 +1073,9 @@ header {
 
   .cart-icon {
     top: 30px;
-    right: 18px;
+    right: 20px;
     font-size: 40px;
+    z-index: 1002;
   }
 
   .carrito-panel {

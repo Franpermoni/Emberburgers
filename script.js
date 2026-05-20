@@ -11,7 +11,8 @@ function irASlide(n) {
     dots[slideActual].classList.add('active');
 }
 
-setInterval(() => {
+// ✅ FIX 1: guardado en variable para poder limpiarlo si fuera necesario
+const intervaloCarrusel = setInterval(() => {
     const siguiente = (slideActual + 1) % slides.length;
     irASlide(siguiente);
 }, 4000);
@@ -117,7 +118,8 @@ document.getElementById('btn-confirmar-compra').addEventListener('click', () => 
         return;
     }
 
-    const nroOrden = Math.floor(Math.random() * 9000) + 1000;
+    const nroOrden = parseInt(localStorage.getItem('nroOrden') || '0') + 1;
+    localStorage.setItem('nroOrden', nroOrden);
 
     let mensaje = `🍔 *EMBER BURGERS — NUEVO PEDIDO #${nroOrden}*\n`;
     mensaje += `━━━━━━━━━━━━━━━━━━━━━━\n\n`;
@@ -283,7 +285,7 @@ gsap.from('.footer-col', {
   scrollTrigger: {
     trigger: '.footer',
     start: 'top 95%',
-    toggleActions: 'play reverse play reverse'
+    toggleActions: 'play none none none' 
   },
   y: 40, opacity: 0, duration: 0.7,
   stagger: 0.15, ease: 'power3.out', clearProps: 'all'
@@ -293,18 +295,22 @@ gsap.from('.copy-footer', {
   scrollTrigger: {
     trigger: '.footer',
     start: 'top 95%',
-    toggleActions: 'play reverse play reverse'
+    toggleActions: 'play none none none'  
   },
   y: 20, opacity: 0, duration: 0.5,
   delay: 0.4, ease: 'power3.out', clearProps: 'all'
 });
 
 // ── ANIMAR SECCIONES ──
+let footerScrollTrigger = null;
+
 function animarSeccion(id) {
-  // Resetear footer antes de animar
+  if (footerScrollTrigger) {
+    footerScrollTrigger.kill();
+    footerScrollTrigger = null;
+  }
+
   gsap.killTweensOf('.footer-col, .copy-footer');
-  gsap.set('.footer-col', { opacity: 0, y: 40 });
-  gsap.set('.copy-footer', { opacity: 0, y: 20 });
 
   if (id === 'sec-productos') {
     gsap.from('.productos-header', {
@@ -331,20 +337,40 @@ function animarSeccion(id) {
     });
   }
 
-  // Animar footer con scroll trigger desde la posición actual
-  ScrollTrigger.create({
-    trigger: '.footer',
-    start: 'top 95%',
-    once: false,
-    onEnter: () => {
-      gsap.to('.footer-col', {
-        y: 0, opacity: 1, duration: 0.7,
-        stagger: 0.15, ease: 'power3.out', clearProps: 'all'
-      });
-      gsap.to('.copy-footer', {
-        y: 0, opacity: 1, duration: 0.5,
-        delay: 0.3, ease: 'power3.out', clearProps: 'all'
-      });
-    }
-  });
+  // ✅ FIX: verificar si el footer ya está en el viewport antes de crear el trigger
+  const footerEl = document.querySelector('.footer');
+  const footerRect = footerEl.getBoundingClientRect();
+  const yaVisible = footerRect.top < window.innerHeight;
+
+  if (yaVisible) {
+    // Ya está visible — animar directo sin esperar scroll
+    gsap.fromTo('.footer-col',
+      { opacity: 0, y: 40 },
+      { opacity: 1, y: 0, duration: 0.7, stagger: 0.15, ease: 'power3.out', clearProps: 'all' }
+    );
+    gsap.fromTo('.copy-footer',
+      { opacity: 0, y: 20 },
+      { opacity: 1, y: 0, duration: 0.5, delay: 0.3, ease: 'power3.out', clearProps: 'all' }
+    );
+  } else {
+    // No está visible — preparar y esperar scroll
+    gsap.set('.footer-col', { opacity: 0, y: 40 });
+    gsap.set('.copy-footer', { opacity: 0, y: 20 });
+
+    footerScrollTrigger = ScrollTrigger.create({
+      trigger: '.footer',
+      start: 'top 95%',
+      once: true,
+      onEnter: () => {
+        gsap.to('.footer-col', {
+          y: 0, opacity: 1, duration: 0.7,
+          stagger: 0.15, ease: 'power3.out', clearProps: 'all'
+        });
+        gsap.to('.copy-footer', {
+          y: 0, opacity: 1, duration: 0.5,
+          delay: 0.3, ease: 'power3.out', clearProps: 'all'
+        });
+      }
+    });
+  }
 }
