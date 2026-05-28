@@ -114,7 +114,7 @@ vaciarCarritoBtn.addEventListener('click', () => {
 // ── CONFIRMAR COMPRA ──
 document.getElementById('btn-confirmar-compra').addEventListener('click', () => {
     if (carrito.length === 0) {
-        alert('Tu carrito está vacío');
+        mostrarModal('Tu carrito está vacío');
         return;
     }
 
@@ -216,7 +216,7 @@ function enviarFormulario() {
   const mensaje  = document.querySelector('.contacto-form-col textarea').value.trim();
 
   if (!nombre || !email || !mensaje) {
-    alert('Por favor completá nombre, email y mensaje.');
+    mostrarModal('Por favor completá nombre, email y mensaje.');
     return;
   }
 
@@ -227,11 +227,11 @@ function enviarFormulario() {
     email,
     mensaje
   }).then(() => {
-    alert('✅ Mensaje enviado con éxito. Te respondemos a la brevedad.');
+    mostrarModal('✅ Mensaje enviado con éxito. Te respondemos a la brevedad.');
     document.querySelectorAll('.contacto-form-col input, .contacto-form-col textarea')
       .forEach(el => el.value = '');
   }).catch(() => {
-    alert('❌ Hubo un error al enviar. Intentá de nuevo.');
+    mostrarModal('❌ Hubo un error al enviar. Intentá de nuevo.');
   });
 }
 
@@ -284,8 +284,8 @@ if (!esMobile) {
 gsap.from('.footer-col', {
   scrollTrigger: {
     trigger: '.footer',
-    start: 'top 95%',
-    toggleActions: 'play none none none' 
+    start: 'top 75%',
+    toggleActions: 'play reverse play reverse' 
   },
   y: 40, opacity: 0, duration: 0.7,
   stagger: 0.15, ease: 'power3.out', clearProps: 'all'
@@ -294,8 +294,8 @@ gsap.from('.footer-col', {
 gsap.from('.copy-footer', {
   scrollTrigger: {
     trigger: '.footer',
-    start: 'top 95%',
-    toggleActions: 'play none none none'  
+    start: 'top 75%',
+    toggleActions: 'play reverse play reverse'  
   },
   y: 20, opacity: 0, duration: 0.5,
   delay: 0.4, ease: 'power3.out', clearProps: 'all'
@@ -343,7 +343,6 @@ function animarSeccion(id) {
   const yaVisible = footerRect.top < window.innerHeight;
 
   if (yaVisible) {
-    // Ya está visible — animar directo sin esperar scroll
     gsap.fromTo('.footer-col',
       { opacity: 0, y: 40 },
       { opacity: 1, y: 0, duration: 0.7, stagger: 0.15, ease: 'power3.out', clearProps: 'all' }
@@ -353,13 +352,12 @@ function animarSeccion(id) {
       { opacity: 1, y: 0, duration: 0.5, delay: 0.3, ease: 'power3.out', clearProps: 'all' }
     );
   } else {
-    // No está visible — preparar y esperar scroll
     gsap.set('.footer-col', { opacity: 0, y: 40 });
     gsap.set('.copy-footer', { opacity: 0, y: 20 });
 
     footerScrollTrigger = ScrollTrigger.create({
       trigger: '.footer',
-      start: 'top 95%',
+      start: 'top 75%',
       once: true,
       onEnter: () => {
         gsap.to('.footer-col', {
@@ -373,4 +371,14 @@ function animarSeccion(id) {
       }
     });
   }
+}  // ← cierre de animarSeccion()
+
+// ── TOAST / MODAL ──   ✅ fuera de animarSeccion, al nivel global
+function mostrarModal(mensaje) {
+  document.getElementById('modal-mensaje').textContent = mensaje;
+  document.getElementById('modal-overlay').classList.add('activo');
+}
+
+function cerrarModal() {
+  document.getElementById('modal-overlay').classList.remove('activo');
 }
