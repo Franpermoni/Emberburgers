@@ -11,7 +11,6 @@ function irASlide(n) {
     dots[slideActual].classList.add('active');
 }
 
-// ✅ FIX 1: guardado en variable para poder limpiarlo si fuera necesario
 const intervaloCarrusel = setInterval(() => {
     const siguiente = (slideActual + 1) % slides.length;
     irASlide(siguiente);
@@ -20,15 +19,40 @@ const intervaloCarrusel = setInterval(() => {
 // ── CARRUSEL NOSOTROS ──
 let slideNosotrosActual = 0;
 const slidesNosotros = document.querySelectorAll('.carruselinfo');
-const dotsNosotros = document.querySelectorAll('.dot-nosotros');
 
 function irASlideNosotros(n) {
     slidesNosotros[slideNosotrosActual].classList.remove('active');
-    dotsNosotros[slideNosotrosActual].classList.remove('active');
     slideNosotrosActual = n;
     slidesNosotros[slideNosotrosActual].classList.add('active');
-    dotsNosotros[slideNosotrosActual].classList.add('active');
 }
+
+function nosotrosAnterior() {
+    const anterior = slideNosotrosActual - 1 < 0 ? slidesNosotros.length - 1 : slideNosotrosActual - 1;
+    irASlideNosotros(anterior);
+}
+
+function nosotrosSiguiente() {
+    const siguiente = slideNosotrosActual + 1 >= slidesNosotros.length ? 0 : slideNosotrosActual + 1;
+    irASlideNosotros(siguiente);
+}
+
+// ── SWIPE CARRUSEL NOSOTROS ──
+const nosotrosContainer = document.querySelector('.info-nosotros-txt');
+let touchStartX = 0;
+
+nosotrosContainer.addEventListener('touchstart', (e) => {
+    touchStartX = e.touches[0].clientX;
+}, { passive: true });
+
+nosotrosContainer.addEventListener('touchend', (e) => {
+    const diff = touchStartX - e.changedTouches[0].clientX;
+    if (Math.abs(diff) < 40) return;
+    if (diff > 0) {
+        nosotrosSiguiente();
+    } else {
+        nosotrosAnterior();
+    }
+}, { passive: true });
 
 // ── CARRITO ──
 const carritoPanel = document.getElementById('carrito-panel');
@@ -37,6 +61,14 @@ const vaciarCarritoBtn = document.getElementById('vaciar-carrito');
 
 document.querySelector('.cart-icon-btn').addEventListener('click', () => {
     carritoPanel.style.display = carritoPanel.style.display === 'block' ? 'none' : 'block';
+});
+
+document.addEventListener('click', (e) => {
+  const dentroCarrito = carritoPanel.contains(e.target);
+  const esIcono = e.target.closest('.cart-icon');
+  if (!dentroCarrito && !esIcono && carritoPanel.style.display === 'block') {
+    carritoPanel.style.display = 'none';
+  }
 });
 
 cerrarCarrito.addEventListener('click', () => {
@@ -235,57 +267,63 @@ function enviarFormulario() {
   });
 }
 
-// ── GSAP ANIMACIONES ──
-gsap.registerPlugin(ScrollTrigger);
-
-const esMobile = window.innerWidth <= 768;
-
-// Forzar visibilidad inicial de elementos críticos
-gsap.set('.info-nosotros-txt, .fondologo, .footer-col, .copy-footer', { clearProps: 'all' });
-
-if (!esMobile) {
-  // Nosotros
-  gsap.from('.fondologo', {
-    scrollTrigger: {
-      trigger: '.nosotros-txt',
-      start: 'top 75%',
-      toggleActions: 'play reverse play reverse'
-    },
-    scale: 0.6, opacity: 0, duration: 1.2,
-    ease: 'elastic.out(1, 0.5)', clearProps: 'all'
-  });
-
-  gsap.from('.info-nosotros-txt', {
-    scrollTrigger: {
-      trigger: '.nosotros-txt',
-      start: 'top 75%',
-      toggleActions: 'play reverse play reverse'
-    },
-    x: 120, opacity: 0, duration: 1,
-    ease: 'power4.out', clearProps: 'all'
-  });
-
-  // Cards productos
-  gsap.utils.toArray('.producto-card').forEach((card, i) => {
-    gsap.from(card, {
-      scrollTrigger: {
-        trigger: card,
-        start: 'top 88%',
-        toggleActions: 'play reverse play reverse'
-      },
-      y: 100, opacity: 0, scale: 0.9,
-      duration: 0.7, delay: i * 0.08,
-      ease: 'back.out(1.4)', clearProps: 'all'
-    });
-  });
+// ── TOAST/MODAL ──
+function mostrarModal(mensaje) {
+  document.getElementById('modal-mensaje').textContent = mensaje;
+  document.getElementById('modal-overlay').classList.add('activo');
 }
 
-// Footer — funciona en mobile y desktop
+function cerrarModal() {
+  document.getElementById('modal-overlay').classList.remove('activo');
+}
+
+// ── GSAP ANIMACIONES ──
+// Todas las animaciones activas en cualquier pantalla, sin if(!esMobile)
+gsap.registerPlugin(ScrollTrigger);
+
+gsap.set('.info-nosotros-txt, .fondologo, .footer-col, .copy-footer', { clearProps: 'all' });
+
+// ── Nosotros — todas las pantallas ──
+gsap.from('.fondologo', {
+  scrollTrigger: {
+    trigger: '.nosotros-txt',
+    start: 'top 75%',
+    toggleActions: 'play reverse play reverse'
+  },
+  scale: 0.6, opacity: 0, duration: 1.2,
+  ease: 'elastic.out(1, 0.5)', clearProps: 'all'
+});
+
+gsap.from('.info-nosotros-txt', {
+  scrollTrigger: {
+    trigger: '.nosotros-txt',
+    start: 'top 75%',
+    toggleActions: 'play reverse play reverse'
+  },
+  x: 60, opacity: 0, duration: 1,
+  ease: 'power4.out', clearProps: 'all'
+});
+
+// ── Cards de productos — todas las pantallas ──
+gsap.utils.toArray('.producto-card').forEach((card, i) => {
+  gsap.from(card, {
+    scrollTrigger: {
+      trigger: card,
+      start: 'top 88%',
+      toggleActions: 'play reverse play reverse'
+    },
+    y: 60, opacity: 0, scale: 0.95,
+    duration: 0.6, delay: i * 0.08,
+    ease: 'back.out(1.4)', clearProps: 'all'
+  });
+});
+
+// ── Footer — play none none none porque está al final de la página ──
 gsap.from('.footer-col', {
   scrollTrigger: {
     trigger: '.footer',
-    start: 'top 75%',
-    toggleActions: 'play reverse play reverse' 
+    start: 'top 95%',
+    toggleActions: 'play none none none'
   },
   y: 40, opacity: 0, duration: 0.7,
   stagger: 0.15, ease: 'power3.out', clearProps: 'all'
@@ -294,8 +332,8 @@ gsap.from('.footer-col', {
 gsap.from('.copy-footer', {
   scrollTrigger: {
     trigger: '.footer',
-    start: 'top 75%',
-    toggleActions: 'play reverse play reverse'  
+    start: 'top 95%',
+    toggleActions: 'play none none none'
   },
   y: 20, opacity: 0, duration: 0.5,
   delay: 0.4, ease: 'power3.out', clearProps: 'all'
@@ -312,32 +350,33 @@ function animarSeccion(id) {
 
   gsap.killTweensOf('.footer-col, .copy-footer');
 
+  // ── Productos-header ──
   if (id === 'sec-productos') {
     gsap.from('.productos-header', {
       y: -50, opacity: 0, duration: 0.7,
       ease: 'power3.out', clearProps: 'all'
     });
-    if (!esMobile) {
-      gsap.from('.producto-card', {
-        y: 80, opacity: 0, scale: 0.9,
-        duration: 0.6, stagger: 0.1,
-        delay: 0.1, ease: 'back.out(1.4)', clearProps: 'all'
-      });
-    }
+    // Cards: animación directa sin ScrollTrigger (la sección acaba de aparecer)
+    gsap.from('.producto-card', {
+      y: 60, opacity: 0, scale: 0.95,
+      duration: 0.6, stagger: 0.1,
+      delay: 0.2, ease: 'back.out(1.4)', clearProps: 'all'
+    });
   }
 
+  // ── Contacto ──
   if (id === 'sec-contacto') {
     gsap.from('.contacto-form-col', {
-      x: esMobile ? 0 : -80, opacity: 0,
+      x: -60, opacity: 0,
       duration: 0.9, ease: 'power4.out', clearProps: 'all'
     });
     gsap.from('.contacto-info-col', {
-      x: esMobile ? 0 : 80, opacity: 0,
+      x: 60, opacity: 0,
       duration: 0.9, ease: 'power4.out', clearProps: 'all'
     });
   }
 
-  // ✅ FIX: verificar si el footer ya está en el viewport antes de crear el trigger
+  // ── Footer dentro de sección ──
   const footerEl = document.querySelector('.footer');
   const footerRect = footerEl.getBoundingClientRect();
   const yaVisible = footerRect.top < window.innerHeight;
@@ -357,7 +396,7 @@ function animarSeccion(id) {
 
     footerScrollTrigger = ScrollTrigger.create({
       trigger: '.footer',
-      start: 'top 75%',
+      start: 'top 95%',
       once: true,
       onEnter: () => {
         gsap.to('.footer-col', {
@@ -371,14 +410,4 @@ function animarSeccion(id) {
       }
     });
   }
-}  // ← cierre de animarSeccion()
-
-// ── TOAST / MODAL ──   ✅ fuera de animarSeccion, al nivel global
-function mostrarModal(mensaje) {
-  document.getElementById('modal-mensaje').textContent = mensaje;
-  document.getElementById('modal-overlay').classList.add('activo');
-}
-
-function cerrarModal() {
-  document.getElementById('modal-overlay').classList.remove('activo');
 }
