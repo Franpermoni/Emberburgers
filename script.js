@@ -444,3 +444,172 @@ function animarSeccion(id) {
         });
     }
 }
+// ── DATOS DE PRODUCTOS ──
+const cpProductos = [
+  {
+    nombre: 'THE CLASSIC SMASH',
+    imagen: 'images/ClassicSmash.png',
+    ingredientes: 'Pan Sunset, smash 90gr, doble cheddar, salsa secreta',
+    precio: 8999,
+    precioDisplay: '$8.999'
+  },
+  {
+    nombre: 'BRAVE',
+    imagen: 'images/brave.png',
+    ingredientes: 'Pan Sunset, smash 90gr, doble cheddar, bacon, cebolla morada, salsa chill',
+    precio: 10500,
+    precioDisplay: '$10.500'
+  },
+  {
+    nombre: '7TH STREET',
+    imagen: 'images/7thstreet.png',
+    ingredientes: 'Pan Sunset, smash 90gr, doble cheddar, cebolla grillada, pepinillos, salsa mil islas',
+    precio: 9500,
+    precioDisplay: '$9.500'
+  },
+  {
+    nombre: 'ONE BURGER',
+    imagen: 'images/oneburger.png',
+    ingredientes: 'Pan Sunset, smash 90gr, doble cheddar, cebolla morada, tomate, lechuga, salsa mil islas',
+    precio: 10000,
+    precioDisplay: '$10.000'
+  },
+  {
+    nombre: 'MANHATTAN',
+    imagen: 'images/manhattan.png',
+    ingredientes: 'Pan Sunset, smash 90gr, doble cheddar, bacon, cebolla crispi, salsa chill',
+    precio: 10500,
+    precioDisplay: '$10.500'
+  },
+  {
+    nombre: 'SIMPLE SMASH',
+    imagen: 'images/simplesmash.png',
+    ingredientes: 'Pan Sunset, smash 90gr, doble cheddar, salsa mil islas',
+    precio: 8500,
+    precioDisplay: '$8.500'
+  }
+];
+ 
+let cpActual = 0;
+let cpAnimando = false;
+ 
+function cpIndice(n) {
+  return ((n % cpProductos.length) + cpProductos.length) % cpProductos.length;
+}
+ 
+function cpRenderizar(idx) {
+  const prev = cpProductos[cpIndice(idx - 1)];
+  const curr = cpProductos[cpIndice(idx)];
+  const next = cpProductos[cpIndice(idx + 1)];
+ 
+  // Stage
+  document.getElementById('cp-img-prev').src   = prev.imagen;
+  document.getElementById('cp-img-prev').alt   = prev.nombre;
+  document.getElementById('cp-img-active').src = curr.imagen;
+  document.getElementById('cp-img-active').alt = curr.nombre;
+  document.getElementById('cp-img-next').src   = next.imagen;
+  document.getElementById('cp-img-next').alt   = next.nombre;
+ 
+  // Nombre con re-animación
+  const nombreEl = document.getElementById('cp-nombre');
+  nombreEl.style.animation = 'none';
+  nombreEl.offsetHeight; // reflow
+  nombreEl.style.animation = '';
+  nombreEl.textContent = curr.nombre;
+ 
+  // Detalle con re-animación
+  const detalleEl = document.getElementById('cp-detalle');
+  detalleEl.style.animation = 'none';
+  detalleEl.offsetHeight;
+  detalleEl.style.animation = '';
+ 
+  document.getElementById('cp-detalle-img').src         = curr.imagen;
+  document.getElementById('cp-detalle-img').alt         = curr.nombre;
+  document.getElementById('cp-ingredientes').textContent = curr.ingredientes;
+  document.getElementById('cp-precio').textContent       = curr.precioDisplay;
+ 
+  // Btn agregar
+  const btn = document.getElementById('cp-btn-agregar');
+  btn.dataset.nombre = curr.nombre;
+  btn.dataset.precio = curr.precio;
+  btn.dataset.imagen = curr.imagen;
+ 
+  // Dots
+  document.querySelectorAll('.cp-dot').forEach((d, i) => {
+    d.classList.toggle('active', i === cpIndice(idx));
+  });
+}
+ 
+function cpCambiar(direccion) {
+  if (cpAnimando) return;
+  cpAnimando = true;
+ 
+  const activeEl = document.getElementById('cp-active');
+  const salida = direccion > 0 ? 'animando-salida-izq' : 'animando-salida-der';
+  activeEl.classList.add(salida);
+ 
+  setTimeout(() => {
+    activeEl.classList.remove(salida);
+    cpActual = cpIndice(cpActual + direccion);
+    cpRenderizar(cpActual);
+    activeEl.classList.add('animando-entrada');
+    setTimeout(() => {
+      activeEl.classList.remove('animando-entrada');
+      cpAnimando = false;
+    }, 400);
+  }, 300);
+}
+ 
+function cpSiguiente() { cpCambiar(1);  }
+function cpAnterior()  { cpCambiar(-1); }
+ 
+function cpAgregar() {
+  const btn = document.getElementById('cp-btn-agregar');
+  agregarAlCarrito(btn);
+}
+ 
+// Swipe en mobile para el carrusel de productos
+function cpInitSwipe() {
+  const stage = document.querySelector('.cp-stage');
+  let startX = 0;
+ 
+  stage.addEventListener('touchstart', (e) => {
+    startX = e.touches[0].clientX;
+  }, { passive: true });
+ 
+  stage.addEventListener('touchend', (e) => {
+    const diff = startX - e.changedTouches[0].clientX;
+    if (Math.abs(diff) < 40) return;
+    if (diff > 0) cpSiguiente();
+    else cpAnterior();
+  }, { passive: true });
+}
+ 
+// Inicializar carrusel de productos
+function cpInit() {
+  // Crear dots
+  const dotsEl = document.getElementById('cp-dots');
+  if (!dotsEl) return;
+  dotsEl.innerHTML = '';
+  cpProductos.forEach((_, i) => {
+    const d = document.createElement('span');
+    d.className = 'cp-dot' + (i === 0 ? ' active' : '');
+    d.onclick = () => {
+      if (i !== cpActual) {
+        const dir = i > cpActual ? 1 : -1;
+        cpActual = i - dir; // cpCambiar suma dir, así queda en i
+        cpCambiar(dir);
+      }
+    };
+    dotsEl.appendChild(d);
+  });
+ 
+  cpActual = 0;
+  cpRenderizar(0);
+  cpInitSwipe();
+}
+ 
+// Llamar a cpInit cuando se muestre la sección productos
+// (se llama desde animarSeccion, que ya tenés en tu JS)
+// Si querés inicializarlo al cargar la página también, descomentá:
+// document.addEventListener('DOMContentLoaded', cpInit);

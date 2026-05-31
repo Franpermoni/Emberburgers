@@ -150,120 +150,54 @@
 
     <!-- SECCIÓN PRODUCTOS -->
 <section class="seccion-pagina" id="sec-productos">
-  <div class="productos-header" data-aos="fade-down">
-    <h1>Nuestros Productos</h1>
-    <div class="linea"></div>
-    <p>Todas nuestras hamburguesas están hechas con pan Sunset y smash 100% carne.</p>
+ 
+  <!-- Carrusel panorámico -->
+  <div class="cp-stage">
+    <button class="cp-arrow cp-arrow--left" onclick="cpAnterior()">&#8592;</button>
+ 
+    <div class="cp-track" id="cp-track">
+      <!-- prev -->
+      <div class="cp-item cp-item--prev" id="cp-prev">
+        <img src="" alt="" id="cp-img-prev">
+      </div>
+      <!-- active -->
+      <div class="cp-item cp-item--active" id="cp-active">
+        <img src="" alt="" id="cp-img-active">
+      </div>
+      <!-- next -->
+      <div class="cp-item cp-item--next" id="cp-next">
+        <img src="" alt="" id="cp-img-next">
+      </div>
+    </div>
+ 
+    <button class="cp-arrow cp-arrow--right" onclick="cpSiguiente()">&#8594;</button>
   </div>
  
-  <div class="productos-grid">
- 
-    <div class="producto-card">
-      <div class="producto-img-wrap">
-        <img src="images/brave.png" alt="Brave">
-      </div>
-      <div class="producto-info">
-        <h2>BRAVE</h2>
-        <p class="producto-desc">Pan Sunset, smash 90gr, doble cheddar, bacon, cebolla morada, salsa chill</p>
-        <div class="producto-footer">
-          <span class="producto-precio">$10.500</span>
-          <a href="#"
-            class="btn-1"
-            data-nombre="Brave"
-            data-precio="10500"
-            data-imagen="images/brave.png"
-            onclick="agregarAlCarrito(this); return false;">
-            Agregar
-          </a>
-        </div>
-      </div>
-    </div>
- 
-    <div class="producto-card">
-      <div class="producto-img-wrap">
-        <img src="images/7thstreet.png" alt="7th Street">
-      </div>
-      <div class="producto-info">
-        <h2>7TH STREET</h2>
-        <p class="producto-desc">Pan Sunset, smash 90gr, doble cheddar, cebolla grillada, pepinillos, salsa mil islas</p>
-        <div class="producto-footer">
-          <span class="producto-precio">$9.500</span>
-          <a href="#"
-            class="btn-1"
-            data-nombre="7th Street"
-            data-precio="9500"
-            data-imagen="images/7thstreet.png"
-            onclick="agregarAlCarrito(this); return false;">
-            Agregar
-          </a>
-        </div>
-      </div>
-    </div>
- 
-    <div class="producto-card" >
-      <div class="producto-img-wrap">
-        <img src="images/oneburger.png" alt="One Burger">
-      </div>
-      <div class="producto-info">
-        <h2>ONE BURGER</h2>
-        <p class="producto-desc">Pan Sunset, smash 90gr, doble cheddar, cebolla morada, tomate, lechuga, salsa mil islas</p>
-        <div class="producto-footer">
-          <span class="producto-precio">$10.000</span>
-          <a href="#"
-            class="btn-1"
-            data-nombre="One Burger"
-            data-precio="10000"
-            data-imagen="images/oneburger.png"
-            onclick="agregarAlCarrito(this); return false;">
-            Agregar
-          </a>
-        </div>
-      </div>
-    </div>
- 
-    <div class="producto-card" >
-      <div class="producto-img-wrap">
-        <img src="images/manhattan.png" alt="Manhattan">
-      </div>
-      <div class="producto-info">
-        <h2>MANHATTAN</h2>
-        <p class="producto-desc">Pan Sunset, smash 90gr, doble cheddar, bacon, cebolla crispi, salsa chill</p>
-        <div class="producto-footer">
-          <span class="producto-precio">$10.500</span>
-          <a href="#"
-            class="btn-1"
-            data-nombre="Manhattan"
-            data-precio="10500"
-            data-imagen="images/manhattan.png"
-            onclick="agregarAlCarrito(this); return false;">
-            Agregar
-          </a>
-        </div>
-      </div>
-    </div>
- 
-    <div class="producto-card" >
-      <div class="producto-img-wrap">
-        <img src="images/simplesmash.png" alt="Simple Smash">
-      </div>
-      <div class="producto-info">
-        <h2>SIMPLE SMASH</h2>
-        <p class="producto-desc">Pan Sunset, smash 90gr, doble cheddar, salsa mil islas</p>
-        <div class="producto-footer">
-          <span class="producto-precio">$8.500</span>
-          <a href="#"
-            class="btn-1"
-            data-nombre="Simple Smash"
-            data-precio="8500"
-            data-imagen="images/simplesmash.png"
-            onclick="agregarAlCarrito(this); return false;">
-            Agregar
-          </a>
-        </div>
-      </div>
-    </div>
- 
+  <!-- Barra nombre -->
+  <div class="cp-nombre-bar">
+    <h2 class="cp-nombre" id="cp-nombre"></h2>
   </div>
+ 
+  <!-- Detalle -->
+  <div class="cp-detalle" id="cp-detalle">
+    <div class="cp-detalle-img-wrap">
+      <img src="" alt="" id="cp-detalle-img">
+    </div>
+    <div class="cp-detalle-info">
+      <h3>Ingredientes</h3>
+      <div class="linea"></div>
+      <p class="cp-ingredientes" id="cp-ingredientes"></p>
+      <div class="cp-footer-detalle">
+        <span class="cp-precio" id="cp-precio"></span>
+        <a href="#" class="btn-1 cp-btn-agregar" id="cp-btn-agregar"
+           onclick="cpAgregar(); return false;">Agregar al carrito</a>
+      </div>
+    </div>
+  </div>
+ 
+  <!-- Dots -->
+  <div class="cp-dots" id="cp-dots"></div>
+ 
 </section>
  
  
