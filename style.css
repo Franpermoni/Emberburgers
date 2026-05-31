@@ -994,488 +994,7 @@ header {
   letter-spacing: 2px;
   margin-bottom: 12px;
 }
- 
-/* ──────────────────────────────────────────
-   RESPONSIVE DESIGN
-   Estrategia: de mayor a menor breakpoint.
-   Lo que se define en 1024px aplica también
-   en 768px y 480px salvo que se sobreescriba.
-────────────────────────────────────────── */
- 
-/* ── Compartido: logo y animaciones en todas las pantallas ≤ 1024px ── */
-@media (max-width: 1024px) {
- 
-  /* Logo */
-  .logo img {
-    width: 240px;
-    height: auto;
-  }
- 
-  /* Animaciones: fallback visible en todas las pantallas */
-  .fondologo,
-  .info-nosotros-txt,
-  .producto-card,
-  .footer-col,
-  .copy-footer {
-    opacity: 1 !important;
-    transform: none !important;
-  }
- 
-  /* Navbar */
-  .navbar ul {
-    gap: 20px;
-  }
- 
-  .navbar ul li a {
-    font-size: 13px;
-  }
- 
-  /* Header */
-  .inicio-content {
-    padding: 40px 40px;
-    gap: 15px;
-  }
- 
-  .header-txt {
-    max-width: 300px;
-  }
- 
-  .header-txt h1 {
-    font-size: 48px;
-  }
- 
-  .header-img img {
-    width: 300px;
-  }
- 
-  /* Valores */
-  .valores {
-    padding: 60px 30px;
-  }
- 
-  .slide h2 {
-    font-size: 42px;
-  }
- 
-  /* Nosotros */
-  .nosotros-txt {
-    min-height: auto;
-  }
- 
-  .fondologo {
-    width: 400px;
-  }
- 
-  .info-nosotros-txt {
-    padding: 40px 30px;
-  }
- 
-  .carruselinfo h2 {
-    font-size: 36px;
-  }
- 
-  /* Footer */
-  .footer-content {
-    grid-template-columns: 1fr 1fr;
-    gap: 20px;
-  }
- 
-  /* Carrito */
-  .carrito-panel {
-    width: 350px;
-    padding: 15px;
-  }
-}
- 
-/* ── Mobile (≤ 768px): sobreescribe lo necesario ── */
-@media (max-width: 768px) {
- 
-  * {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-  }
- 
-  header {
-    background-position: center;
-  }
- 
-  .header-container {
-    flex-direction: column;
-  }
- 
-  /* Logo */
-  .logo {
-    width: 100%;
-    padding: 15px 20px;
-  }
- 
-  /* Navbar horizontal → oculto */
-  .navbar {
-    width: 100%;
-    flex-direction: column;
-  }
- 
-  .navbar ul {
-    flex-direction: column;
-    gap: 10px;
-    width: 100%;
-    align-items: center;
-  }
- 
-  .navbar ul li {
-    width: 100%;
-    text-align: center;
-  }
- 
-  .navbar ul li a {
-    font-size: 12px;
-    display: block;
-    padding: 8px;
-  }
- 
-  /* Header content */
-  .inicio-content {
-    flex-direction: column;
-    padding: 30px 20px;
-    min-height: auto;
-    gap: 30px;
-    align-items: center;
-    text-align: center;
-  }
- 
-  .header-txt {
-    max-width: 100%;
-    gap: 15px;
-  }
- 
-  .header-txt h1 {
-    font-size: 36px;
-  }
- 
-  .header-txt p {
-    font-size: 14px;
-  }
- 
-  .header-img {
-    justify-content: center;
-  }
- 
-  .header-img img {
-    width: 250px;
-    max-width: 100%;
-  }
- 
-  .btn-1 {
-    padding: 12px 24px;
-    font-size: 14px;
-  }
- 
-  /* Solo el carrito queda fixed */
-  .cart-icon {
-    top: 30px;
-    right: 20px;
-    font-size: 40px;
-    z-index: 1002;
-  }
- 
-  .carrito-panel {
-    top: 60px;
-    right: 15px;
-    left: 15px;
-    width: auto;
-    max-width: 100%;
-    max-height: 70vh;
-    padding: 15px;
-  }
- 
-  .carrito-header h3 {
-    font-size: 20px;
-  }
- 
-  #lista-carrito th {
-    font-size: 11px;
-    padding: 5px 3px;
-  }
- 
-  #lista-carrito td {
-    font-size: 12px;
-    padding: 8px 3px;
-  }
- 
-  /* Valores */
-  .valores {
-    padding: 40px 20px;
-    min-height: auto;
-  }
- 
-  .carrusel {
-    max-width: 100%;
-  }
- 
-  .slide h2 {
-    font-size: 32px;
-  }
- 
-  .slide p {
-    font-size: 14px;
-    max-width: 100%;
-  }
- 
-  /* Nosotros */
-  .nosotros-txt {
-    flex-direction: column;
-    min-height: auto;
-  }
- 
-  .nosotrosfondo {
-    width: 100%;
-    min-height: 300px;
-    padding: 30px 20px;
-  }
- 
-  .fondologo {
-    width: 250px;
-  }
- 
-  .info-nosotros-txt {
-    width: 100%;
-    padding: 30px 20px;
-  }
- 
-  .carruselinfo h2 {
-    font-size: 28px;
-  }
- 
-  .carruselinfo p {
-    font-size: 13px;
-    max-width: 100%;
-  }
- 
-  /* Footer */
-  .footer-content {
-    grid-template-columns: 1fr;
-    gap: 20px;
-    text-align: center;
-  }
- 
-  .footer-col {
-    padding: 0;
-  }
- 
-  .footer-col.col-center,
-  .footer-col.col-right {
-    align-items: center;
-  }
- 
-  .social-list {
-    justify-content: center;
-  }
- 
-  .copy-img {
-    height: 100px;
-  }
- 
-  .footer {
-    padding: 20px 15px 0;
-  }
-}
- 
-/* ── Mobile pequeño (≤ 480px): sobreescribe lo necesario ── */
-@media (max-width: 480px) {
- 
-  /* Logo en fila con menu-toggle */
-  .logo {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    justify-content: center;
-    width: 100%;
-    position: relative;
-    padding: 12px 20px;
-  }
- 
-  /* Menu toggle — no fixed, se queda en el header */
-  .menu-toggle {
-    display: block;
-    position: absolute;
-    left: 18px;
-    top: 30px;
-    z-index: 999;
-    font-size: 20px;
-    background: none;
-    border: none;
-    color: #F5F5F5;
-    cursor: pointer;
-  }
- 
-  /* Navbar lateral */
-  .navbar {
-    display: block;
-    position: fixed;
-    top: 0;
-    left: -100%;
-    width: 55%;
-    height: 100vh;
-    background-color: #1A1A1A;
-    border-right: 1px solid #E85D04;
-    z-index: 1001;
-    transition: left 0.3s ease;
-    padding: 60px 30px 30px;
-  }
- 
-  .navbar.abierto {
-    left: 0;
-  }
- 
-  .navbar ul {
-    flex-direction: column;
-    align-items: flex-start;
-    gap: 16px;
-    padding: 0;
-    background: none;
-    border: none;
-  }
- 
-  .navbar ul li a {
-    font-size: 16px;
-    padding: 6px;
-  }
- 
-  .menu-cerrar {
-    display: block;
-    background: none;
-    border: none;
-    color: #F5F5F5;
-    font-size: 22px;
-    cursor: pointer;
-    margin-bottom: 30px;
-    align-self: flex-end;
-  }
- 
-  .menu-cerrar:hover {
-    color: #E85D04;
-  }
- 
-  /* Header */
-  .header-txt h1 {
-    padding-top: 30px;
-    font-size: 28px;
-  }
- 
-  .header-txt p {
-    font-size: 12px;
-  }
- 
-  .header-img img {
-    width: 200px;
-  }
- 
-  .btn-1 {
-    padding: 10px 20px;
-    font-size: 12px;
-    justify-content: center;
-    width: auto;
-    align-self: center;
-  }
- 
-  .inicio-content {
-    flex-direction: column;
-    padding: 30px 20px;
-    min-height: auto;
-    gap: 30px;
-    align-items: center;
-    text-align: center;
-  }
- 
-  /* Valores */
-  .valores {
-    padding: 30px 15px;
-  }
- 
-  .slide h2 {
-    font-size: 24px;
-  }
- 
-  .slide p {
-    font-size: 13px;
-  }
- 
-  /* Nosotros */
-  .nosotrosfondo {
-    min-height: 250px;
-    padding: 20px 15px;
-  }
- 
-  .fondologo {
-    width: 200px;
-  }
- 
-  .info-nosotros-txt {
-    padding: 20px 15px;
-  }
- 
-  .carruselinfo h2 {
-    font-size: 22px;
-  }
- 
-  .carruselinfo p {
-    font-size: 12px;
-  }
- 
-  /* Carrito */
-  .carrito-panel {
-    right: 10px;
-    left: 10px;
-  }
- 
-  /* Footer */
-  .copy-img {
-    height: 80px;
-  }
- 
-  /* Secciones */
-  .seccion-pagina {
-    padding: 30px 20px;
-  }
- 
-  /* Productos */
-  .producto-card {
-    max-width: 320px;
-    margin: 0 auto;
-  }
- 
-  .productos-grid {
-    grid-template-columns: 1fr;
-    gap: 20px;
-  }
- 
-  .productos-header h1 {
-    font-size: 36px;
-  }
- 
-  .producto-img-wrap {
-    height: 220px;
-  }
- 
-  /* Contacto */
-  .contacto-wrap {
-    grid-template-columns: 1fr;
-    gap: 30px;
-  }
- 
-  .contacto-form-col h1 {
-    font-size: 36px;
-  }
- 
-  .local-card {
-    padding: 20px;
-  }
- 
-  .extra-item {
-    padding: 14px 16px;
-  }
-}
+
 /* Stage panorámico */
 .cp-stage {
   position: relative;
@@ -1707,8 +1226,356 @@ header {
   transform: scale(1.3);
 }
  
-/* ── Responsive ── */
+/* ──────────────────────────────────────────
+   RESPONSIVE DESIGN
+   Estrategia: de mayor a menor breakpoint.
+   Lo que se define en 1024px aplica también
+   en 768px y 480px salvo que se sobreescriba.
+────────────────────────────────────────── */
+ 
+/* ── Compartido: logo y animaciones en todas las pantallas ≤ 1024px ── */
+@media (max-width: 1024px) {
+ 
+  /* Logo */
+  .logo img {
+    width: 240px;
+    height: auto;
+  }
+ 
+  /* Animaciones: fallback visible en todas las pantallas */
+  .fondologo,
+  .info-nosotros-txt,
+  .producto-card,
+  .footer-col,
+  .copy-footer {
+    opacity: 1 !important;
+    transform: none !important;
+  }
+ 
+  /* Navbar */
+  .navbar ul {
+    gap: 20px;
+  }
+ 
+  .navbar ul li a {
+    font-size: 13px;
+  }
+ 
+  /* Header */
+  .inicio-content {
+    padding: 40px 40px;
+    gap: 15px;
+  }
+ 
+  .header-txt {
+    max-width: 300px;
+  }
+ 
+  .header-txt h1 {
+    font-size: 48px;
+  }
+ 
+  .header-img img {
+    width: 300px;
+  }
+ 
+  /* Valores */
+  .valores {
+    padding: 60px 30px;
+  }
+ 
+  .slide h2 {
+    font-size: 42px;
+  }
+ 
+  /* Nosotros */
+  .nosotros-txt {
+    min-height: auto;
+  }
+ 
+  .fondologo {
+    width: 400px;
+  }
+ 
+  .info-nosotros-txt {
+    padding: 40px 30px;
+  }
+ 
+  .carruselinfo h2 {
+    font-size: 36px;
+  }
+ 
+  /* Footer */
+  .footer-content {
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+  }
+ 
+  /* Carrusel de productos */
+  .cp-stage {
+    min-height: 260px;
+    padding: 18px 0 0;
+  }
+
+  .cp-item--active {
+    width: 280px;
+  }
+
+  .cp-item--active img {
+    width: 250px;
+    height: 250px;
+  }
+
+  .cp-item--prev,
+  .cp-item--next {
+    width: 160px;
+  }
+
+  .cp-item--prev img,
+  .cp-item--next img {
+    width: 130px;
+    height: 130px;
+  }
+
+  .cp-arrow {
+    width: 44px;
+    height: 44px;
+    font-size: 20px;
+  }
+
+  .cp-arrow--left  { left: 16px; }
+  .cp-arrow--right { right: 16px; }
+
+  .cp-nombre {
+    font-size: 48px;
+  }
+
+  .cp-detalle {
+    grid-template-columns: 1fr 1fr;
+    gap: 40px;
+    padding: 40px 30px;
+  }
+
+  .cp-detalle-img-wrap img {
+    max-width: 260px;
+  }
+
+  .cp-detalle-info h3 {
+    font-size: 34px;
+  }
+
+  .cp-ingredientes {
+    font-size: 15px;
+  }
+
+  .cp-precio {
+    font-size: 34px;
+  }
+
+  .cp-footer-detalle {
+    gap: 14px;
+  }
+
+  /* Carrito */
+  .carrito-panel {
+    width: 350px;
+    padding: 15px;
+  }
+}
+ 
+/* ── Mobile (≤ 768px): sobreescribe lo necesario ── */
 @media (max-width: 768px) {
+ 
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+ 
+  header {
+    background-position: center;
+  }
+ 
+  .header-container {
+    flex-direction: column;
+  }
+ 
+  /* Logo */
+  .logo {
+    width: 100%;
+    padding: 15px 20px;
+  }
+ 
+  /* Navbar horizontal → oculto */
+  .navbar {
+    width: 100%;
+    flex-direction: column;
+  }
+ 
+  .navbar ul {
+    flex-direction: column;
+    gap: 10px;
+    width: 100%;
+    align-items: center;
+  }
+ 
+  .navbar ul li {
+    width: 100%;
+    text-align: center;
+  }
+ 
+  .navbar ul li a {
+    font-size: 12px;
+    display: block;
+    padding: 8px;
+  }
+ 
+  /* Header content */
+  .inicio-content {
+    flex-direction: column;
+    padding: 30px 20px;
+    min-height: auto;
+    gap: 30px;
+    align-items: center;
+    text-align: center;
+  }
+ 
+  .header-txt {
+    max-width: 100%;
+    gap: 15px;
+  }
+ 
+  .header-txt h1 {
+    font-size: 36px;
+  }
+ 
+  .header-txt p {
+    font-size: 14px;
+  }
+ 
+  .header-img {
+    justify-content: center;
+  }
+ 
+  .header-img img {
+    width: 250px;
+    max-width: 100%;
+  }
+ 
+  .btn-1 {
+    padding: 12px 24px;
+    font-size: 14px;
+  }
+ 
+  /* Solo el carrito queda fixed */
+  .cart-icon {
+    top: 30px;
+    right: 20px;
+    font-size: 40px;
+    z-index: 1002;
+  }
+ 
+  .carrito-panel {
+    top: 60px;
+    right: 15px;
+    left: 15px;
+    width: auto;
+    max-width: 100%;
+    max-height: 70vh;
+    padding: 15px;
+  }
+ 
+  .carrito-header h3 {
+    font-size: 20px;
+  }
+ 
+  #lista-carrito th {
+    font-size: 11px;
+    padding: 5px 3px;
+  }
+ 
+  #lista-carrito td {
+    font-size: 12px;
+    padding: 8px 3px;
+  }
+ 
+  /* Valores */
+  .valores {
+    padding: 40px 20px;
+    min-height: auto;
+  }
+ 
+  .carrusel {
+    max-width: 100%;
+  }
+ 
+  .slide h2 {
+    font-size: 32px;
+  }
+ 
+  .slide p {
+    font-size: 14px;
+    max-width: 100%;
+  }
+ 
+  /* Nosotros */
+  .nosotros-txt {
+    flex-direction: column;
+    min-height: auto;
+  }
+ 
+  .nosotrosfondo {
+    width: 100%;
+    min-height: 300px;
+    padding: 30px 20px;
+  }
+ 
+  .fondologo {
+    width: 250px;
+  }
+ 
+  .info-nosotros-txt {
+    width: 100%;
+    padding: 30px 20px;
+  }
+ 
+  .carruselinfo h2 {
+    font-size: 28px;
+  }
+ 
+  .carruselinfo p {
+    font-size: 13px;
+    max-width: 100%;
+  }
+ 
+  /* Footer */
+  .footer-content {
+    grid-template-columns: 1fr;
+    gap: 20px;
+    text-align: center;
+  }
+ 
+  .footer-col {
+    padding: 0;
+  }
+ 
+  .footer-col.col-center,
+  .footer-col.col-right {
+    align-items: center;
+  }
+ 
+  .social-list {
+    justify-content: center;
+  }
+ 
+  .copy-img {
+    height: 100px;
+  }
+ 
+  .footer {
+    padding: 20px 15px 0;
+  }
+
   .cp-stage {
     min-height: 220px;
   }
@@ -1747,7 +1614,201 @@ header {
   .cp-arrow--right { right: 8px; }
 }
  
+/* ── Mobile pequeño (≤ 480px): sobreescribe lo necesario ── */
 @media (max-width: 480px) {
+ 
+  /* Logo en fila con menu-toggle */
+  .logo {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    position: relative;
+    padding: 12px 20px;
+  }
+ 
+  /* Menu toggle — no fixed, se queda en el header */
+  .menu-toggle {
+    display: block;
+    position: absolute;
+    left: 18px;
+    top: 30px;
+    z-index: 999;
+    font-size: 20px;
+    background: none;
+    border: none;
+    color: #F5F5F5;
+    cursor: pointer;
+  }
+ 
+  /* Navbar lateral */
+  .navbar {
+    display: block;
+    position: fixed;
+    top: 0;
+    left: -100%;
+    width: 55%;
+    height: 100vh;
+    background-color: #1A1A1A;
+    border-right: 1px solid #E85D04;
+    z-index: 1001;
+    transition: left 0.3s ease;
+    padding: 60px 30px 30px;
+  }
+ 
+  .navbar.abierto {
+    left: 0;
+  }
+ 
+  .navbar ul {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 16px;
+    padding: 0;
+    background: none;
+    border: none;
+  }
+ 
+  .navbar ul li a {
+    font-size: 16px;
+    padding: 6px;
+  }
+ 
+  .menu-cerrar {
+    display: block;
+    background: none;
+    border: none;
+    color: #F5F5F5;
+    font-size: 22px;
+    cursor: pointer;
+    margin-bottom: 30px;
+    align-self: flex-end;
+  }
+ 
+  .menu-cerrar:hover {
+    color: #E85D04;
+  }
+ 
+  /* Header */
+  .header-txt h1 {
+    padding-top: 30px;
+    font-size: 28px;
+  }
+ 
+  .header-txt p {
+    font-size: 12px;
+  }
+ 
+  .header-img img {
+    width: 200px;
+  }
+ 
+  .btn-1 {
+    padding: 10px 20px;
+    font-size: 12px;
+    justify-content: center;
+    width: auto;
+    align-self: center;
+  }
+ 
+  .inicio-content {
+    flex-direction: column;
+    padding: 30px 20px;
+    min-height: auto;
+    gap: 30px;
+    align-items: center;
+    text-align: center;
+  }
+ 
+  /* Valores */
+  .valores {
+    padding: 30px 15px;
+  }
+ 
+  .slide h2 {
+    font-size: 24px;
+  }
+ 
+  .slide p {
+    font-size: 13px;
+  }
+ 
+  /* Nosotros */
+  .nosotrosfondo {
+    min-height: 250px;
+    padding: 20px 15px;
+  }
+ 
+  .fondologo {
+    width: 200px;
+  }
+ 
+  .info-nosotros-txt {
+    padding: 20px 15px;
+  }
+ 
+  .carruselinfo h2 {
+    font-size: 22px;
+  }
+ 
+  .carruselinfo p {
+    font-size: 12px;
+  }
+ 
+  /* Carrito */
+  .carrito-panel {
+    right: 10px;
+    left: 10px;
+  }
+ 
+  /* Footer */
+  .copy-img {
+    height: 80px;
+  }
+ 
+  /* Secciones */
+  .seccion-pagina {
+    padding: 30px 20px;
+  }
+ 
+  /* Productos */
+  .producto-card {
+    max-width: 320px;
+    margin: 0 auto;
+  }
+ 
+  .productos-grid {
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+ 
+  .productos-header h1 {
+    font-size: 36px;
+  }
+ 
+  .producto-img-wrap {
+    height: 220px;
+  }
+ 
+  /* Contacto */
+  .contacto-wrap {
+    grid-template-columns: 1fr;
+    gap: 30px;
+  }
+ 
+  .contacto-form-col h1 {
+    font-size: 36px;
+  }
+ 
+  .local-card {
+    padding: 20px;
+  }
+ 
+  .extra-item {
+    padding: 14px 16px;
+  }
+
   .cp-stage {
     min-height: 180px;
   }
