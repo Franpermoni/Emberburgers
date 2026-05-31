@@ -321,7 +321,7 @@ gsap.from('.footer-col', {
     scrollTrigger: {
         trigger: '.footer',
         start: 'top 95%',
-        toggleActions: 'play none none none'
+        toggleActions: 'play reverse play reverse'
     },
     y: 40, opacity: 0, duration: 0.7,
     stagger: 0.15, ease: 'power3.out', clearProps: 'all'
@@ -331,7 +331,7 @@ gsap.from('.copy-footer', {
     scrollTrigger: {
         trigger: '.footer',
         start: 'top 95%',
-        toggleActions: 'play none none none'
+        toggleActions: 'play reverse play reverse'
     },
     y: 20, opacity: 0, duration: 0.5,
     delay: 0.4, ease: 'power3.out', clearProps: 'all'
