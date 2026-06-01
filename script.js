@@ -61,8 +61,10 @@ document.querySelector('.cart-icon-btn').addEventListener('click', () => {
 });
 
 document.addEventListener('click', (e) => {
-    const dentroCarrito = carritoPanel.contains(e.target);
     const esIcono = e.target.closest('.cart-icon');
+    // ✅ FIX: usar composedPath para detectar el panel incluso después de re-render del tbody
+    const path = e.composedPath ? e.composedPath() : [];
+    const dentroCarrito = path.includes(carritoPanel) || e.target.closest('#carrito-panel');
     if (!dentroCarrito && !esIcono && carritoPanel.style.display === 'block') {
         carritoPanel.style.display = 'none';
     }
@@ -95,42 +97,47 @@ function actualizarCarrito() {
     const totalSpan = document.getElementById('total');
     const badge = document.querySelector('.cart-badge');
 
-    tbody.innerHTML = '';
+    // ✅ FIX: construir el HTML completo primero y asignarlo de una sola vez
+    // así el panel no se re-renderiza parcialmente durante un click
+    let html = '';
     let total = 0;
     let cantidadTotal = 0;
 
     carrito.forEach((item, index) => {
         total += item.precio * item.cantidad;
         cantidadTotal += item.cantidad;
-        tbody.innerHTML += `
+        html += `
             <tr>
-  <td><img src="${item.imagen}" width="50"></td>
-  <td>${item.nombre}</td>
-  <td>
-    <div style="display:flex; align-items:center; gap:6px;">
-      <button onclick="cambiarCantidad(${index}, -1)">−</button>
-      <span style="min-width:20px; text-align:center; display:inline-block;">${item.cantidad}</span>
-      <button onclick="cambiarCantidad(${index}, 1)">+</button>
-    </div>
-  </td>
-  <td>$${(item.precio * item.cantidad).toLocaleString()}</td>
-  <td><button onclick="eliminarItem(${index})">🗑️</button></td>
-</tr>
+              <td><img src="${item.imagen}" width="50"></td>
+              <td>${item.nombre}</td>
+              <td>
+                <div style="display:flex; align-items:center; gap:6px;">
+                  <button onclick="cambiarCantidad(event, ${index}, -1)">−</button>
+                  <span style="min-width:20px; text-align:center; display:inline-block;">${item.cantidad}</span>
+                  <button onclick="cambiarCantidad(event, ${index}, 1)">+</button>
+                </div>
+              </td>
+              <td>$${(item.precio * item.cantidad).toLocaleString()}</td>
+              <td><button onclick="eliminarItem(${index})">🗑️</button></td>
+            </tr>
         `;
     });
+
+    tbody.innerHTML = html; // ✅ una sola asignación, no acumulativa
 
     totalSpan.textContent = '$' + total.toLocaleString();
     badge.style.display = cantidadTotal > 0 ? 'block' : 'none';
     badge.textContent = cantidadTotal;
 }
 
-function cambiarCantidad(index, valor) {
+function cambiarCantidad(e, index, valor) {
+    e.stopPropagation(); //Frena el click antes de que altere el dom global
     carrito[index].cantidad += valor;
     if (carrito[index].cantidad <= 0) carrito.splice(index, 1);
     actualizarCarrito();
 }
 
-function eliminarItem(index) {
+function eliminarItem(index) { 
     carrito.splice(index, 1);
     actualizarCarrito();
 }
