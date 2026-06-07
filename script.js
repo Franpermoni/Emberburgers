@@ -413,44 +413,44 @@ function animarSeccion(id) {
 // ── DATOS DE PRODUCTOS ──
 const cpProductos = [
     {
-        nombre: 'THE CLASSIC SMASH',
+        nombre: 'LA CLÁSICA',
         imagen: 'images/ClassicSmash.png',
-        ingredientes: ['Pan Sunset', 'smash 90gr', 'doble cheddar', 'salsa secreta'],
+        ingredientes: ['Pan brioche', 'medallón 90gr', 'doble cheddar', 'salsa criolla'],
         precio: 8999,
         precioDisplay: '$8.999'
     },
     {
-        nombre: 'BRAVE',
+        nombre: 'LA PAMPEANA',
         imagen: 'images/brave.png',
-        ingredientes: ['Pan Sunset', 'smash 90gr', 'doble cheddar', 'bacon', 'cebolla morada', 'salsa chill'],
+        ingredientes: ['Pan brioche', 'medallón 90gr', 'doble cheddar', 'panceta ahumada', 'cebolla morada', 'chimichurri'],
         precio: 10500,
         precioDisplay: '$10.500'
     },
     {
-        nombre: '7TH STREET',
+        nombre: 'LA CORDOBESA',
         imagen: 'images/7thstreet.png',
-        ingredientes: ['Pan Sunset', 'smash 90gr', 'doble cheddar', 'cebolla grillada', 'pepinillos', 'salsa mil islas'],
+        ingredientes: ['Pan brioche', 'medallón 90gr', 'doble cheddar', 'cebolla grillada', 'pepinillos', 'salsa golf'],
         precio: 9500,
         precioDisplay: '$9.500'
     },
     {
-        nombre: 'ONE BURGER',
+        nombre: 'LA DEL BARRIO',
         imagen: 'images/oneburger.png',
-        ingredientes: ['Pan Sunset', 'smash 90gr', 'doble cheddar', 'cebolla morada', 'tomate', 'lechuga', 'salsa mil islas'],
+        ingredientes: ['Pan brioche', 'medallón 90gr', 'doble cheddar', 'cebolla morada', 'tomate perita', 'lechuga', 'salsa golf'],
         precio: 10000,
         precioDisplay: '$10.000'
     },
     {
-        nombre: 'MANHATTAN',
+        nombre: 'LA FOGONERA',
         imagen: 'images/manhattan.png',
-        ingredientes: ['Pan Sunset', 'smash 90gr', 'doble cheddar', 'bacon', 'cebolla crispi', 'salsa chill'],
+        ingredientes: ['Pan brioche', 'medallón 90gr', 'doble cheddar', 'panceta ahumada', 'cebolla crocante', 'salsa ahumada'],
         precio: 10500,
         precioDisplay: '$10.500'
     },
     {
-        nombre: 'SIMPLE SMASH',
+        nombre: 'LA SENCILLA',
         imagen: 'images/simplesmash.png',
-        ingredientes: ['Pan Sunset', 'smash 90gr', 'doble cheddar', 'salsa mil islas'],
+        ingredientes: ['Pan brioche', 'medallón 90gr', 'doble cheddar', 'salsa golf'],
         precio: 8500,
         precioDisplay: '$8.500'
     }
@@ -581,4 +581,19 @@ function cpInit() {
     cpActual = 0;
     cpRenderizar(0);
     cpInitSwipe();
+
+    // ✅ Click en hamburguesas prev/next para navegar
+    document.getElementById('cp-prev').onclick = () => cpAnterior();
+    document.getElementById('cp-next').onclick = () => cpSiguiente();
+
+    // ✅ Flechas de teclado (solo cuando la sección productos está visible)
+    if (!cpInit._keyRegistered) {
+        cpInit._keyRegistered = true;
+        document.addEventListener('keydown', (e) => {
+            const sec = document.getElementById('sec-productos');
+            if (!sec || sec.style.display === 'none' || sec.style.display === '') return;
+            if (e.key === 'ArrowRight') cpSiguiente();
+            if (e.key === 'ArrowLeft')  cpAnterior();
+        });
+    }
 }
