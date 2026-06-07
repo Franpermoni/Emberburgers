@@ -8,8 +8,8 @@
  
 header {
     background-image: 
-        linear-gradient(rgba(0,0,0,0.65), rgba(0,0,0,0.65)),
-        url('images/fondo.avif');
+    linear-gradient(rgba(0,0,0,0.65), rgba(0,0,0,0.65)),
+    url('images/fondo.avif');
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
@@ -1441,7 +1441,7 @@ header {
   }
  
   .logo img {
-    width: 160px;
+    width: 190px;
   }
  
   /* Navbar horizontal → oculto */
@@ -1665,13 +1665,16 @@ header {
     position: relative;
     padding: 12px 20px;
   }
+  .logo img {
+    width: 280px;
+  }
  
   /* Menu toggle — no fixed, se queda en el header */
   .menu-toggle {
     display: block;
     position: absolute;
     left: 18px;
-    top: 30px;
+    top: 43px;
     z-index: 999;
     font-size: 20px;
     background: none;
@@ -1680,6 +1683,9 @@ header {
     cursor: pointer;
   }
  
+  .cart-icon {
+    top: 43px;
+  }
   /* Navbar lateral */
   .navbar {
     display: block;
