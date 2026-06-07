@@ -19,21 +19,24 @@ header {
 .header-container {
     display: flex;
     flex-direction: column;  
-    align-items: center;
+    align-items: stretch;
 }
  
  
 .logo {
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
     align-items: center;
-    gap: 10px;
+    justify-content: space-between;
+    padding: 18px 600px 18px 32px;
     border: none;
-    padding-top: 10px;
+    gap: 0;
+    width: 100%;
+    border-bottom: 1px solid #E85D04;
 }
  
 .logo img {
-    width: 340px;
+    width: 200px;
     height: auto;
     object-fit: contain;   
 }
@@ -56,7 +59,8 @@ header {
     flex-direction: row;     
     align-items: center;
     gap: 20px;
-    padding: 10px 0;
+    padding: 0;
+    margin-left: auto;
 }
  
 .navbar ul {
@@ -85,8 +89,8 @@ header {
  
 .cart-icon {
   position: fixed;
-  top: 25px;
-  right: 30px;
+  top: 28px;
+  right: 32px;
   z-index: 999;
   display: inline-flex;
   align-items: center;
@@ -700,7 +704,7 @@ header {
   padding: 60px 80px;
   animation: fadeIn 0.4s ease;
 }
-
+ 
 #sec-productos {
   padding: 0;
 }
@@ -998,7 +1002,7 @@ header {
   letter-spacing: 2px;
   margin-bottom: 12px;
 }
-
+ 
 /* Stage panorámico */
 .cp-stage {
   position: relative;
@@ -1054,7 +1058,7 @@ header {
   opacity: 0.6;
   cursor: pointer;
 }
-
+ 
 .cp-item--prev:hover,
 .cp-item--next:hover {
   opacity: 0.85;
@@ -1162,7 +1166,7 @@ header {
 .cp-detalle-img-wrap {
   display: none;
 }
-
+ 
 .cp-detalle-img-wrap img {
   width: 100%;
   max-width: 300px;
@@ -1170,7 +1174,7 @@ header {
   filter: drop-shadow(0 10px 30px rgba(232, 93, 4, 0.3));
   transition: filter 0.3s ease;
 }
-
+ 
 .cp-detalle-img-wrap img:hover {
   filter: drop-shadow(0 10px 40px rgba(232, 93, 4, 0.6));
 }
@@ -1182,7 +1186,7 @@ header {
   gap: 20px;
   width: 100%;
 }
-
+ 
 .cp-detalle-info h3 {
   font-family: 'Bebas Neue', sans-serif;
   font-size: 36px;
@@ -1221,12 +1225,7 @@ header {
  
 /* Dots */
 .cp-dots {
-  display: flex;
-  justify-content: center;
-  gap: 10px;
-  padding: 20px 0 40px;
-  background-color: #111;
-  width: 100%;
+  display: none;
 }
  
 .cp-dot {
@@ -1249,7 +1248,7 @@ header {
     margin: 0;
     width: fit-content;
 }
-
+ 
 .cp-ing-item {
     font-family: 'Poppins', sans-serif;
     font-size: 13px;
@@ -1350,66 +1349,66 @@ header {
     min-height: 260px;
     padding: 18px 0 0;
   }
-
+ 
   .cp-item--active {
     width: 280px;
   }
-
+ 
   .cp-item--active img {
     width: 250px;
     height: 250px;
   }
-
+ 
   .cp-item--prev,
   .cp-item--next {
     width: 160px;
   }
-
+ 
   .cp-item--prev img,
   .cp-item--next img {
     width: 130px;
     height: 130px;
   }
-
+ 
   .cp-arrow {
     width: 44px;
     height: 44px;
     font-size: 20px;
   }
-
+ 
   .cp-arrow--left  { left: 30px; }
   .cp-arrow--right { right: 30px; }
-
+ 
   .cp-nombre {
     font-size: 48px;
   }
-
+ 
   .cp-detalle {
     grid-template-columns: 1fr 1fr;
     gap: 40px;
     padding: 40px 30px;
   }
-
+ 
   .cp-detalle-img-wrap img {
     max-width: 260px;
   }
-
+ 
   .cp-detalle-info h3 {
     font-size: 34px;
   }
-
+ 
   .cp-ingredientes {
     font-size: 15px;
   }
-
+ 
   .cp-precio {
     font-size: 34px;
   }
-
+ 
   .cp-footer-detalle {
     gap: 14px;
   }
-
+ 
   /* Carrito */
   .carrito-panel {
     width: 350px;
@@ -1437,7 +1436,12 @@ header {
   /* Logo */
   .logo {
     width: 100%;
-    padding: 15px 20px;
+    padding: 12px 20px;
+    justify-content: space-between;
+  }
+ 
+  .logo img {
+    width: 160px;
   }
  
   /* Navbar horizontal → oculto */
@@ -1609,7 +1613,7 @@ header {
   .footer {
     padding: 20px 15px 0;
   }
-
+ 
   .cp-stage {
     min-height: 220px;
   }
@@ -1842,7 +1846,7 @@ header {
   .extra-item {
     padding: 14px 16px;
   }
-
+ 
   .cp-stage {
     min-height: 180px;
   }
